@@ -28,6 +28,7 @@
 
         <!--Modernizr Js-->
         <script src="js/modernizr.js"></script>
+  
 
         <!--Favicons-->
         <link rel="shortcut icon" href="img/profile-img.jpg" type="image/x-icon">
@@ -40,6 +41,15 @@
             gtag('js', new Date());
             gtag('config', 'UA-122650090-3');
         </script>
+		
+		<style>
+		.zalo-chat-widget
+		{  
+			bottom: 0px!important;  
+			right: 80px!important;  
+		}  
+		</style>
+
 
     </head>
 
@@ -610,7 +620,6 @@
       </div>
 	 
 	  <div class="zalo-chat-widget" data-oaid="301582559235990105" 
-			  style="right: 80px"
 			  data-welcome-message="Rất vui khi được hỗ trợ bạn!" 
 			  data-autopopup="0" 
 			  data-width="350" 
@@ -618,7 +627,7 @@
 	  </div>
 	  <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
-		<!-- Load Facebook SDK for JavaScript -->
+<!-- Load Facebook SDK for JavaScript -->
       <div id="fb-root"></div>
       <script>
 			window.fbAsyncInit = function() {
@@ -637,44 +646,7 @@
 		  }(document, 'script', 'facebook-jssdk'));
 	  </script>
 
-     
-	  
-	    <script>  
-				window.addEventListener('message', function (message) {
-
-					var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-					if (isMobile) {
-						var w = screen.width - 10;
-						var h = screen.height;
-						var lstCmd = message.data.toString().split('|');
-						if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
-							$("#baseChatBox").css("right", "9.1rem");
-							$("#baseChatBox").css("z-index", "2147483600");
-							$('#baseChatBox').height(eval(lstCmd[1]));
-							$('#baseChatBox').width(50);
-						}
-						else if (lstCmd.length > 1 && lstCmd[0] == "OPEN") {
-							$("#baseChatBox").css("right", "0.3rem");
-							$("#baseChatBox").css("z-index", "2147483603");
-							$('#baseChatBox').height(eval(lstCmd[1]) + 30);
-							//$('#baseChatBox').height(h);
-							$('#baseChatBox').width(w);
-						}
-					}
-					else {
-						var lstCmd = message.data.toString().split('|');
-						if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
-							// do colse on customer site
-							$('#baseChatBox').height(eval(lstCmd[1]));
-							$('#baseChatBox').width(50);
-						}
-						else if (lstCmd.length > 1 && lstCmd[0] == "OPEN") {
-							$('#baseChatBox').height(eval(lstCmd[1]));
-							$('#baseChatBox').width(320);
-						}
-					}
-				});
-	    </script>
+	   
     </body>
 
 <!-- Mirrored from watson-vcard.netlify.com/index-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Jan 2020 15:53:44 GMT -->
