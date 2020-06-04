@@ -600,6 +600,24 @@
 
         <script src="js/main-demo.js"></script>
 
+
+  <!-- Load zalo SDK for JavaScript -->
+      <div class="fb-customerchat"
+			attribution=setup_tool
+			page_id="106105397800440"
+			logged_in_greeting="Chào ! rất vui được hỗ trợ bạn"
+			logged_out_greeting="Chào ! rất vui được hỗ trợ bạn">
+      </div>
+	 
+	  <div class="zalo-chat-widget" data-oaid="301582559235990105" 
+			  style="right: 80px"
+			  data-welcome-message="Rất vui khi được hỗ trợ bạn!" 
+			  data-autopopup="0" 
+			  data-width="350" 
+			  data-height="420">
+	  </div>
+	  <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+
 		<!-- Load Facebook SDK for JavaScript -->
       <div id="fb-root"></div>
       <script>
@@ -619,22 +637,8 @@
 		  }(document, 'script', 'facebook-jssdk'));
 	  </script>
 
-       <!-- Load zalo SDK for JavaScript -->
-      <div class="fb-customerchat"
-			attribution=setup_tool
-			page_id="106105397800440"
-			logged_in_greeting="Chào ! rất vui được hỗ trợ bạn"
-			logged_out_greeting="Chào ! rất vui được hỗ trợ bạn">
-      </div>
-	 
-	  <div class="zalo-chat-widget" data-oaid="301582559235990105" 
-			  style="right: 80px"
-			  data-welcome-message="Rất vui khi được hỗ trợ bạn!" 
-			  data-autopopup="0" 
-			  data-width="350" 
-			  data-height="420">
-	  </div>
-	    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+     
+	  
 	    <script>  
 				window.addEventListener('message', function (message) {
 
