@@ -48,6 +48,19 @@
 			bottom: 0px!important;  
 			right: 80px!important;  
 		}  
+		#iframe {
+		  top: -230px;
+		  left: -25px;
+		  position:relative;
+		  width: 800px;
+		  height: 1600px;
+		}
+		#container {
+		  overflow: hidden;
+		  height: 560px;
+		  width: 750px;
+		  position: relative;
+		}
 		</style>
 
 
@@ -611,14 +624,7 @@
         <script src="js/main-demo.js"></script>
 
 
-  <!-- Load zalo SDK for JavaScript -->
-      <div class="fb-customerchat"
-			attribution=setup_tool
-			page_id="106105397800440"
-			logged_in_greeting="Chào ! rất vui được hỗ trợ bạn"
-			logged_out_greeting="Chào ! rất vui được hỗ trợ bạn">
-      </div>
-	 
+    <!-- Load zalo SDK for JavaScript -->
 	  <div class="zalo-chat-widget" data-oaid="301582559235990105" 
 			  data-welcome-message="Rất vui khi được hỗ trợ bạn!" 
 			  data-autopopup="0" 
@@ -627,24 +633,34 @@
 	  </div>
 	  <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
-<!-- Load Facebook SDK for JavaScript -->
+	<!-- Load Facebook SDK for JavaScript -->
+      <div class="fb-customerchat"
+			attribution=setup_tool
+			page_id="106105397800440"
+			logged_in_greeting="Chào ! rất vui được hỗ trợ bạn"
+			logged_out_greeting="Chào ! rất vui được hỗ trợ bạn">
+      </div>
       <div id="fb-root"></div>
       <script>
-			window.fbAsyncInit = function() {
+		window.fbAsyncInit = function() {
 			  FB.init({
 				xfbml            : true,
 				version          : 'v7.0'
 			  });
-			};
-
-			(function(d, s, id) {
+		};
+		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) return;
 			js = d.createElement(s); js.id = id;
-			js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
 			fjs.parentNode.insertBefore(js, fjs);
-		  }(document, 'script', 'facebook-jssdk'));
+		}(document, 'script', 'facebook-jssdk'));
 	  </script>
+	  
+	<!-- Load Viper SDK for JavaScript -->
+	  <div id="container">
+	     <iframe id="iframe" scrolling="no" src="http://chatdrive.nsspot.net/?fileId=0BxNo5fDEi-Q7c0ZTU1NNT19tc0E"></iframe>
+	  </div>
 
 	   
     </body>
