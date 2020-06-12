@@ -13,13 +13,14 @@
     $("body").append("<div class='fb-customerchat' attribution=setup_tool page_id='106105397800440' theme_color='#007bff' greeting_dialog_display='hide' logged_in_greeting='Rất vui khi được hỗ trợ bạn!' logged_out_greeting='Rất vui khi được hỗ trợ bạn!'></div>");
 
     //viber chat messnger
-    $("body").append("<div id='ViberChatBox' style='position:fixed; right:9.1rem; bottom:1rem; z-index:2147483600;height:50px;width:50px'><iframe src='https://cbcfcd494515.ngrok.io/ViberChat/Index?url=" + currentLocation + "' style='width:100%;height:100%;border:0 !important;'></iframe></div>");
+    $("body").append("<div id='ViberChatBox' style='position:fixed; right:8.5rem; bottom:1rem; z-index:2147483600;height:50px;width:50px'><iframe src='https://cbcfcd494515.ngrok.io/ViberChat/Index?url=" + currentLocation + "' style='width:100%;height:100%;border:0 !important;'></iframe></div>");
 
 
 });
 
 window.addEventListener('message', function (message) {
-    this.console.log(message, isMobile);
+    this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
+	
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
         var w = screen.width - 10;
