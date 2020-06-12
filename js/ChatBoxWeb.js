@@ -19,13 +19,14 @@
 });
 
 window.addEventListener('message', function (message) {
-    this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
-	
+ 	
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
         var w = screen.width - 10;
         var h = screen.height;
         var lstCmd = message.data.toString().split('|');
+		   this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
+		
         if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
             $("#baseChatBox").css("right", "9.1rem");
             $("#baseChatBox").css("z-index", "2147483600");
@@ -48,6 +49,7 @@ window.addEventListener('message', function (message) {
     }
     else {
         var lstCmd = message.data.toString().split('|');
+		   this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
         if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
             // do colse on customer site
             $('#baseChatBox').height(eval(lstCmd[1]));
