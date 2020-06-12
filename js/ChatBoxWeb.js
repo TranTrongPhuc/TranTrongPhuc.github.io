@@ -25,7 +25,7 @@ window.addEventListener('message', function (message) {
         var w = screen.width - 10;
         var h = screen.height;
         var lstCmd = message.data.toString().split('|');
-		   this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
+		 //  this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
 		
         if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
             $("#baseChatBox").css("right", "9.1rem");
@@ -40,26 +40,21 @@ window.addEventListener('message', function (message) {
             //$('#baseChatBox').height(h);
             $('#baseChatBox').width(w);
         }
-
-        //$("#ViberChatBox").css("right", "9.1rem");
-        //$("#ViberChatBox").css("z-index", "2147483600");
-        //$('#ViberChatBox').height(eval(lstCmd[1]));
-        //$('#ViberChatBox').width(50);
-        
     }
     else {
         var lstCmd = message.data.toString().split('|');
-		   this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
+		  // this.console.log(message, isMobile , "eval(lstCmd[1])=", eval(lstCmd[1]));
         if (lstCmd.length > 1 && lstCmd[0] == "CLOSE") {
             // do colse on customer site
+			$("#baseChatBox").css("right", "9.1rem");
             $('#baseChatBox').height(eval(lstCmd[1]));
             $('#baseChatBox').width(110);
         }
         else if (lstCmd.length > 1 && lstCmd[0] == "OPEN") {
+			$("#baseChatBox").css("right", "12.1rem");
             $('#baseChatBox').height(eval(lstCmd[1]));
             $('#baseChatBox').width(320);
         }
-        //$('#ViberChatBox').height(eval(lstCmd[1]));
-        //$('#ViberChatBox').width(50);
+
     }
 });
