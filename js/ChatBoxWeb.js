@@ -36,7 +36,7 @@ window.addEventListener('message', function (message) {
         else if (lstCmd.length > 1 && lstCmd[0] == "OPEN") {
             $("#baseChatBox").css("right", "0.3rem");
             $("#baseChatBox").css("z-index", "2147483603");
-            $('#baseChatBox').height(eval(lstCmd[1]) + 30);
+            $('#baseChatBox').height(eval(lstCmd[1]) + 60);
             //$('#baseChatBox').height(h);
             $('#baseChatBox').width(w);
         }
