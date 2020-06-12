@@ -54,7 +54,7 @@ window.addEventListener('message', function (message) {
 			$("#baseChatBox").css("right", "12.1rem");
             $('#baseChatBox').height(eval(lstCmd[1])+ 30);
             $('#baseChatBox').width(320);
-        }+
+        }
 
     }
 });
