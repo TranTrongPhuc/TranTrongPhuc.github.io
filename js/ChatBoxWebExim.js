@@ -18,4 +18,5 @@ $(document).ready(function () {
 		}(document, 'script', 'facebook-jssdk'));
      $("body").append("<div class='fb-customerchat' attribution=setup_tool page_id='106105397800440' theme_color='#007bff' greeting_dialog_display='hide' logged_in_greeting='Rất vui khi được hỗ trợ bạn!' logged_out_greeting='Rất vui khi được hỗ trợ bạn!'></div>");
 
+
 });
