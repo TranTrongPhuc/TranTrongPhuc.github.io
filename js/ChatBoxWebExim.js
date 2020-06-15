@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    //zalo chat
-    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='301582559235990105' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
-
+	
+    // Zalo chat
+    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='521548348685135034' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
+    // FB Chat
 	window.fbAsyncInit = function () {
 			FB.init({
 				xfbml: true,
@@ -16,7 +17,7 @@ $(document).ready(function () {
 			js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-     $("body").append("<div class='fb-customerchat' attribution=setup_tool page_id='106105397800440' theme_color='#007bff' greeting_dialog_display='hide' logged_in_greeting='Rất vui khi được hỗ trợ bạn!' logged_out_greeting='Rất vui khi được hỗ trợ bạn!'></div>");
+     $("body").append("<div class='fb-customerchat' attribution=setup_tool page_id='274921902673153' theme_color='#007bff' greeting_dialog_display='hide' logged_in_greeting='Rất vui khi được hỗ trợ bạn!' logged_out_greeting='Rất vui khi được hỗ trợ bạn!'></div>");
 
 
 });
