@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Zalo chat
-    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div style='bottom: 0px!important; right: 80px!important;' class='zalo-chat-widget' data-oaid='521548348685135034' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
+    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='521548348685135034' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
     // FB Chat
 	window.fbAsyncInit = function () {
 			FB.init({
