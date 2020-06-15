@@ -624,7 +624,8 @@
         <script src="js/main-demo.js"></script>
 
 
-    <!-- Load zalo SDK for JavaScript 
+
+    <!-- Load zalo SDK for JavaScript -->
 	  <div class="zalo-chat-widget" data-oaid="301582559235990105" 
 			  data-welcome-message="Rất vui khi được hỗ trợ bạn!" 
 			  data-autopopup="0" 
@@ -633,7 +634,7 @@
 	  </div>
 	  <script src="https://sp.zalo.me/plugins/sdk.js"></script>-->
 
-	<!-- Load Facebook SDK for JavaScript 
+	<!-- Load Facebook SDK for JavaScript
       <div class="fb-customerchat"
 			attribution=setup_tool
 			page_id="106105397800440"
@@ -655,11 +656,36 @@
 		    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	  </script>-->
-	<!-- Load Viper SDK for JavaScript -->
+	  </script> 
+	  
+<!-- Load Facebook SDK for JavaScript eximbankFanface -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v7.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="274921902673153">
+      </div>
+	  
+	<!-- Load Viper SDK for JavaScript 
 
 
-	 <script src="js/ChatBoxWeb.js"></script>
+	 <script src="js/ChatBoxWeb.js"></script>-->
 	 
 	 
     </body>
