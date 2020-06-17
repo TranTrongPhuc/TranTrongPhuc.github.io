@@ -5,8 +5,19 @@
     $("body").append("<div id='baseChatBox' style='position:fixed; right:9.1rem; bottom:1rem; z-index:2147483600;height:0;'><iframe src='"+urlSJChat+"/WebChat/Index?url=" + currentLocation + "' style='width:100%;height:100%;border:0 !important;'></iframe></div>");
 
     //zalo chat
-    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='521548348685135034' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
+    $("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='301582559235990105' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
     $("body").append("<link href='"+urlSJChat+"/Content/customlocationwidget.css' rel='stylesheet' type='text/css' />");
+
+
+    //zalo chat EXim
+    //$("body").append("<script src='https://sp.zalo.me/plugins/sdk.js'></script><div class='zalo-chat-widget' data-oaid='521548348685135034' data-welcome-message='Rất vui khi được hỗ trợ bạn!' data-autopopup='0' data-width='350' data-height='420'></div>");
+    //$("body").append("<link href='"+urlSJChat+"/Content/customlocationwidget.css' rel='stylesheet' type='text/css' />");
+
+
+
+
+
+
 
     //facebook messenger
     $("body").append("<div id='fb-root'></div>");
