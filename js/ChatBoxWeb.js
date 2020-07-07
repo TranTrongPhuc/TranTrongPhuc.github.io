@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-	//var urlSJChat ="https://dce9c3012add.ngrok.io";
-	var urlSJChat ="https://chat.eximbank.com.vn";
+	var urlSJChat ="https://e8c70e2ffc3d.ngrok.io ";
+	//var urlSJChat ="https://chat.eximbank.com.vn";
     //web chat
     var currentLocation = window.location.toString();
     $("body").append("<div id='baseChatBox' style='position:fixed; right:9.1rem; bottom:1rem; z-index:2147483600;height:0;'><iframe src='"+urlSJChat+"/WebChat/Index?url=" + currentLocation + "' style='width:100%;height:100%;border:0 !important;'></iframe></div>");
