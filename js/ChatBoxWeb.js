@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-	var urlSJChat ="https://e8c70e2ffc3d.ngrok.io ";
+	var urlSJChat ="https://afbbfe121623.ngrok.io";
 	//var urlSJChat ="https://chat.eximbank.com.vn";
     //web chat
     var currentLocation = window.location.toString();
