@@ -1,0 +1,11 @@
+﻿.zalo-chat-widget{
+ 	right: 65px!important;
+	bottom: 0px!important;
+    z-index:2147483601!important;
+}
+
+.fb_dialog{
+    right: 10px!important;
+	bottom: 17px!important;
+    z-index:2147483602!important;
+}
