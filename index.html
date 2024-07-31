@@ -60,7 +60,7 @@
 		
 		<!--Main Styles Css-->
         <link rel="stylesheet" href="css/customlocationwidget.css">
-
+		<link rel="stylesheet" href="css/AlbumStyles.css">
     </head>
 
 <body>
@@ -133,8 +133,8 @@
                             <li><a href="#home" class="pt-link active"><span class="nav-menu-icon"><i class="lnr lnr-home"></i></span>Home </a> </li>
                             <li><a href="#about" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>About Me</a></li>
                             <li><a href="#resume" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-license"></i></span>Resume</a></li>
-                            <!-- <li><a href="#portfolio" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-briefcase"></i></span>Portfolio</a></li>
-                            <li><a href="#blog" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li> -->
+                            <!-- <li><a href="#portfolio" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-briefcase"></i></span>Portfolio</a></li>-->
+                            <li><a href="#blog" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li> 
                             <li><a href="#contact" class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-envelope"></i></span>Contact</a></li>
                         </ul>
                     </nav>
@@ -164,7 +164,6 @@
 
             <!--Banner Section Start-->
             <section id="home" class="banner-section pt-page" style="background-image: url('img/backgroup.jpg')">
-
                 <div class="banner-content">
                     <!--Banner Text-->
                     <h1 class="mb-20">PHUC <span>TRAN TRONG </span></h1>
@@ -181,12 +180,12 @@
                     </p>
 
                 </div>
-
             </section>
             <!--Banner Section End-->
             <!--About Section Start-->
             <section id="about" class="about-section pt-page">
                 <div class="section-container">
+
                     <!--Page Heading-->
                     <div class="page-heading">
                         <span class="icon"><i class="lnr lnr-user"></i></span>
@@ -281,7 +280,8 @@
                     </div>
                     <!--Services Row End-->
             </section>
-            <!--About Section Start-->
+            </section>
+			<!--About Section Start-->
             <!--Resume Section Start-->
             <section id="resume" class="resume-section pt-page">
                 <div class="section-container">
@@ -487,6 +487,79 @@
                     <!--Skills Row End-->
                 </div>
             </section>
+			<section id="blog" class="resume-section pt-page">
+			    <div class="banner-content">
+							<div class="albums">
+								<div class="album" id="album1">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+								<div class="album" id="album2">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+								<div class="album" id="album3">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+								<div class="album" id="album4">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+								<div class="album" id="album5">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+								<div class="album" id="album6">
+									<div class="album-content">
+										<img src="img\album\1.jpg" alt="Image 1">
+										<img src="img\album\2.jpg" alt="Image 2">
+										<img src="img\album\3.jpg" alt="Image 3">
+										<img src="img\album\4.jpg" alt="Image 4">
+										<img src="img\album\5.jpg" alt="Image 5">
+										<img src="img\album\6.jpg" alt="Image 6">
+									</div>
+								</div>
+							</div>
+				</div>
+				<div id="lightbox" class="lightbox">
+					<span class="prev">&lt;</span>
+					<img class="lightbox-content" id="lightbox-img">
+					<div id="caption"></div>
+					<span class="close">&times;</span>
+					<span class="next">&gt;</span>
+				</div>
+            </section>
             <!--Resume Section End-->
             <!--Contact Section Start-->
             <section id="contact" class="contact-section pt-page">
@@ -629,6 +702,8 @@
 
     <!-- Your Plugin chat code -->
     <div id="fb-customer-chat" class="fb-customerchat">
+	
+	   <script src="js/AlbumImageScript.js"></script>
     </div>
 
     <script>
