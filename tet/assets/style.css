@@ -176,3 +176,49 @@ h1, h2, blockquote { font-family: "Lora", Georgia, "Times New Roman", serif; }
 .lucky-number-disclaimer { max-width: 520px; margin: 18px auto 0; color: var(--muted); font-size: .7rem; line-height: 1.65; }
 @media (prefers-reduced-motion: reduce) { .fall-particle, .deity-glow, .lucky-number-card.reveal .lucky-number-display, .lucky-number-card.reveal .smoke { animation: none !important; } }
 @media (max-width: 600px) { .falling-side { width: 22px; opacity: .5; }.deity-emoji { width: 80px; height: 80px; font-size: 2.8rem; }.fortune-deity { min-height: 130px; } }
+
+/* Five-second golden flash, twin fortune figures, rising mist and burst reveal */
+.lucky-number-card { min-height: 500px; }
+.golden-flash { position: absolute; z-index: 10; inset: 0; display: grid; place-items: center; pointer-events: none; opacity: 0; visibility: hidden; background: radial-gradient(circle at center, #fffde8 0%, #ffe681 28%, #ffc52d 58%, #a95b05 100%); }
+.golden-flash span { color: #8b1118; font-family: "Lora", Georgia, serif; font-size: clamp(1.8rem, 6vw, 3.4rem); font-weight: 900; letter-spacing: .08em; text-shadow: 0 0 12px #fff, 0 0 35px #fff6b2; }
+.lucky-number-card.charging .golden-flash { visibility: visible; animation: goldenCover 5s ease-in-out forwards; }
+@keyframes goldenCover { 0% { opacity: 0; } 8% { opacity: 1; } 78% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+.fortune-deities { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: center; gap: clamp(24px, 9vw, 100px); width: 100%; min-height: 185px; margin: 5px 0 12px; opacity: 0; visibility: hidden; }
+.lucky-number-card.reveal .fortune-deities { visibility: visible; animation: deityPairAppear .8s cubic-bezier(.2,1.5,.4,1) both; }
+.fortune-figure { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 120px; min-height: 180px; filter: drop-shadow(0 8px 10px #8b301c28); }
+.fortune-left { transform: translateX(-120px) scale(.65); opacity: 0; }
+.fortune-right { transform: translateX(120px) scale(.65); opacity: 0; }
+.lucky-number-card.reveal .fortune-left { animation: deityFromLeft .8s .08s cubic-bezier(.2,1.4,.4,1) forwards; }
+.lucky-number-card.reveal .fortune-right { animation: deityFromRight .8s .08s cubic-bezier(.2,1.4,.4,1) forwards; }
+.figure-aura { position: absolute; bottom: 20px; width: 125px; height: 125px; border-radius: 50%; background: radial-gradient(circle, #ffd76b99, #ffc63220 55%, transparent 73%); animation: deityGlow 2s ease-in-out infinite; }
+.figure-hat { position: relative; z-index: 1; margin-bottom: -17px; font-size: 2.25rem; filter: drop-shadow(0 2px 0 #9c5b0d); }
+.figure-face { position: relative; z-index: 2; font-size: 3.8rem; line-height: 1.1; }
+.figure-robe { position: relative; z-index: 1; margin-top: -4px; display: grid; place-items: center; width: 70px; height: 52px; border: 2px solid #f2c45e; border-radius: 18px 18px 9px 9px; background: linear-gradient(135deg, #e82b31, #8c101a); box-shadow: inset 0 0 0 3px #f4c95d55; font-size: 2rem; }
+.fortune-right .figure-robe { background: linear-gradient(135deg, #e9b73e, #a65e0b); }
+.fortune-figure small { position: relative; z-index: 2; margin-top: 6px; color: #8f151b; font-size: .62rem; font-weight: 950; letter-spacing: .12em; }
+@keyframes deityPairAppear { from { opacity: 0; } to { opacity: 1; } }
+@keyframes deityFromLeft { 0% { transform: translateX(-120px) scale(.55); opacity: 0; } 75% { transform: translateX(8px) scale(1.08); opacity: 1; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+@keyframes deityFromRight { 0% { transform: translateX(120px) scale(.55); opacity: 0; } 75% { transform: translateX(-8px) scale(1.08); opacity: 1; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+.lucky-number-card .smoke-layer { z-index: 3; top: 65px; width: 85%; height: 260px; }
+.smoke-d, .smoke-e { position: absolute; bottom: 0; left: 35%; width: 100px; height: 130px; border-radius: 50%; background: radial-gradient(ellipse, #fff4d4b8 0%, #d9b98969 43%, transparent 72%); filter: blur(12px); opacity: 0; }
+.smoke-e { left: 62%; width: 90px; height: 115px; }
+.lucky-number-card.reveal .smoke-d { animation: mysticSmoke 3.4s ease-out .25s infinite; }
+.lucky-number-card.reveal .smoke-e { animation: mysticSmoke 3s ease-out .8s infinite; }
+.lucky-number-card .lucky-number-label, .lucky-number-card .lucky-number-display, .lucky-number-card .lucky-number-message { position: relative; z-index: 4; }
+.lucky-number-card.charging .fortune-deities, .lucky-number-card.charging .lucky-number-label, .lucky-number-card.charging .lucky-number-display, .lucky-number-card.charging .lucky-number-message { visibility: hidden; }
+.lucky-number-card.reveal .lucky-number-display { opacity: 0; transform: scale(.05); }
+.lucky-number-card.number-explosion .lucky-number-display { animation: numberBurst .9s cubic-bezier(.12,1.7,.35,1) both; }
+@keyframes numberBurst { 0% { opacity: 0; transform: scale(.05) rotate(-18deg); filter: blur(12px); text-shadow: 0 0 0 #fff; } 35% { opacity: 1; transform: scale(1.65) rotate(7deg); filter: blur(0); text-shadow: 0 0 22px #fff5b2, 0 0 50px #ffbd22, 0 0 90px #f7a900; } 58% { transform: scale(.88) rotate(-3deg); } 78% { transform: scale(1.18) rotate(2deg); } 100% { opacity: 1; transform: scale(1) rotate(0); text-shadow: 0 4px 0 #e9c36a, 0 8px 20px #9d142027; } }
+.lucky-number-card.charging #drawLuckyNumber { visibility: hidden; }
+@media (max-width: 600px) { .lucky-number-card { min-height: 450px; } .fortune-deities { gap: 16px; min-height: 155px; } .fortune-figure { width: 92px; min-height: 150px; } .figure-face { font-size: 3rem; } .figure-hat { font-size: 1.8rem; } .figure-robe { width: 58px; height: 44px; font-size: 1.6rem; } .figure-aura { width: 100px; height: 100px; } }
+@media (prefers-reduced-motion: reduce) { .lucky-number-card.charging .golden-flash { animation: none; opacity: 1; visibility: visible; } .lucky-number-card.reveal .fortune-left, .lucky-number-card.reveal .fortune-right, .lucky-number-card.reveal .fortune-deities, .lucky-number-card.number-explosion .lucky-number-display { animation: none !important; opacity: 1; transform: none; } }
+
+/* Random 6/55 number set: playful display only, not a prediction. */
+.lucky-number-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; position: relative; z-index: 4; }
+.lucky-number-actions .button { margin: 0; }
+.vietlott-number-display { position: relative; z-index: 4; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(6px, 1.5vw, 12px); width: 100%; max-width: 560px; min-height: 90px; padding: 12px 0; }
+.vietlott-number-display[hidden] { display: none; }
+.vietlott-number-ball { display: grid; place-items: center; width: clamp(42px, 10vw, 66px); height: clamp(42px, 10vw, 66px); border: 3px solid #f4d77d; border-radius: 50%; color: #fff9df; background: radial-gradient(circle at 30% 25%, #ffdf73, #c5222a 68%, #7d1018); box-shadow: 0 0 0 3px #a66b1a, 0 7px 18px #9d142044, inset 0 2px 5px #fff8b877; font-size: clamp(1.05rem, 3.8vw, 1.55rem); font-weight: 900; text-shadow: 0 1px 2px #6d1016; }
+.lucky-number-card.number-explosion .vietlott-number-ball { animation: numberBurst .9s cubic-bezier(.12,1.7,.35,1) both; }
+.lucky-number-card.charging #drawLuckyNumber, .lucky-number-card.charging #drawVietlottNumbers { visibility: hidden; }
+@media (max-width: 600px) { .lucky-number-actions { flex-direction: column; width: 100%; max-width: 330px; } .lucky-number-actions .button { width: 100%; } .vietlott-number-display { gap: 8px; } }
