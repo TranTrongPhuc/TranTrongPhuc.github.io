@@ -272,6 +272,23 @@
   $("restartGame").addEventListener("click", startGame);
   startGame();
 
+
+  // Bầu cua: virtual dice, no betting.
+  const bauFaces={"bầu":"🍐","cua":"🦀","tôm":"🦐","cá":"🐟","gà":"🐓","nai":"🦌"};let chosenAnimal="bầu";
+  $("bauCuaOptions").querySelectorAll(".bau-cua-choice").forEach(b=>b.addEventListener("click",()=>{chosenAnimal=b.dataset.animal;$("bauCuaOptions").querySelectorAll(".bau-cua-choice").forEach(x=>x.classList.toggle("selected",x===b));}));
+  $("rollBauCua").addEventListener("click",()=>{const keys=Object.keys(bauFaces);const result=Array.from({length:3},()=>{const animal=keys[Math.floor(Math.random()*keys.length)];return {animal,emoji:bauFaces[animal]};});$("bauCuaResults").innerHTML=result.map(x=>`<span title="${x.animal}">${x.emoji}</span>`).join("");const hits=result.filter(x=>x.animal===chosenAnimal).length;$("bauCuaMessage").textContent=hits?`Hên quá! ${bauFaces[chosenAnimal]} ${chosenAnimal} xuất hiện ${hits} lần. 🌸`:`Lần này chưa có ${chosenAnimal}. Chúc bạn may mắn lượt sau!`;});
+  // Kéo co speed challenge.
+  let tugTimer=null,tugCount=0,tugSeconds=10,tugActive=false;function finishTug(msg){if(tugTimer)clearInterval(tugTimer);tugTimer=null;tugActive=false;$("startTug").textContent="Chơi lại";$("tugMessage").textContent=msg;}
+  $("startTug").addEventListener("click",()=>{if(tugActive){tugCount++;$("tugCount").textContent=tugCount;$("tugProgress").style.width=`${Math.min(100,50+tugCount*2.5)}%`;if(tugCount>=20)finishTug("Thắng rồi! Đội bạn kéo co cực khỏe! 🎉");return;}if(tugTimer)clearInterval(tugTimer);tugCount=0;tugSeconds=10;tugActive=true;$("tugCount").textContent="0";$("tugTime").textContent="10";$("tugProgress").style.width="50%";$("tugMessage").textContent="Nhanh tay bấm nút để kéo dây về phía mình!";$("startTug").textContent="KÉO! KÉO! KÉO!";tugTimer=setInterval(()=>{tugSeconds--;$("tugTime").textContent=tugSeconds;if(tugSeconds<=0&&tugActive)finishTug("Hết giờ rồi! Bấm chơi lại để thử sức lần nữa.");},1000);});
+  // Simplified Ô ăn quan-inspired stone collection mini-game.
+  let quanScore=0,quanTurns=5,quanPits=[2,3,1,4,2];function renderQuan(){ $("quanBoard").querySelectorAll(".quan-pit").forEach(b=>{const i=Number(b.dataset.pit),n=quanPits[i];b.innerHTML=`${n?"🪨".repeat(n):"✨"}<span>Ô ${i+1}</span>`;b.disabled=!n||quanTurns===0||quanScore>=10;});$("quanScore").textContent=quanScore;$("quanTurns").textContent=quanTurns;}
+  $("quanBoard").querySelectorAll(".quan-pit").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.pit);if(!quanPits[i]||quanTurns<=0||quanScore>=10)return;const n=quanPits[i];quanPits[i]=0;quanScore+=n;quanTurns--;renderQuan();$("quanMessage").textContent=quanScore>=10?`Giỏi quá! Bạn nhặt được ${quanScore} viên sỏi. 🎉`:quanTurns===0?`Bạn nhặt được ${quanScore} viên. Bấm chơi lại để thử lần nữa!`:`Nhặt được ${n} viên sỏi! Chọn ô tiếp theo nào.`;}));
+  $("resetQuan").addEventListener("click",()=>{quanScore=0;quanTurns=5;quanPits=[2,3,1,4,2];$("quanMessage").textContent="Chọn một ô để bắt đầu!";renderQuan();});renderQuan();
+  // Lucky envelopes: pretend prizes only; no real money or payout.
+  const prizeFormat=n=>`${Number(n).toLocaleString("vi-VN")} ₫`;let envelopeOpened=false;
+  $("envelopePickGrid").querySelectorAll(".pick-envelope").forEach(b=>b.addEventListener("click",()=>{if(envelopeOpened)return;envelopeOpened=true;const prize=Number(b.dataset.prize);$("envelopePickGrid").querySelectorAll(".pick-envelope").forEach(x=>{x.disabled=true;x.classList.toggle("opened",x===b);});const jackpot=prize===1000000000;$("jackpotResult").innerHTML=`<div class="jackpot-result-icon">${jackpot?"🎉✨🧧":"🧧🌸"}</div><p>${jackpot?"ĐẠI PHÁT! BẠN ĐÃ TRÚNG JACKPOT ẢO!":"LỘC XUÂN CỦA BẠN"}</p><strong>${prizeFormat(prize)}</strong><span>${jackpot?"Trúng 1 tỷ may mắn trong trò chơi! Chúc mừng năm mới!":"Một chút lộc xuân, thật nhiều niềm vui. Chúc mừng năm mới!"}</span>`;b.querySelector("small").textContent=jackpot?"TRÚNG 1 TỶ!":"Đã bóc";}));
+  $("resetEnvelopes").addEventListener("click",()=>{envelopeOpened=false;const buttons=Array.from($("envelopePickGrid").querySelectorAll(".pick-envelope"));const prizes=buttons.map(b=>Number(b.dataset.prize));shuffle(prizes);buttons.forEach((b,i)=>{b.dataset.prize=String(prizes[i]);b.disabled=false;b.classList.remove("opened");b.querySelector("small").textContent=i===7?"Phong bao bí ẩn":`Phong bao ${i+1}`;});$("jackpotResult").innerHTML='<div class="jackpot-result-icon">✨</div><p>Chọn một phong bao bất kỳ</p><strong>Biết đâu là 1.000.000.000 ₫!</strong><span>Chúc bạn năm mới nhiều niềm vui và may mắn.</span>';});
+
   // Mobile navigation
   const menuToggle = $("menuToggle"), mainNav = $("mainNav");
   menuToggle.addEventListener("click", () => {
