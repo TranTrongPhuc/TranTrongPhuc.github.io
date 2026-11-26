@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#8f1018">
+  <meta name="description" content="Đếm ngược Tết Nguyên Đán 2027, lịch âm, lời chúc và tiện ích Tết Việt Nam.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap&subset=vietnamese" rel="stylesheet">
+  <title>Sắp Tết 2027 — Tết về nhà thôi!</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <div class="top-ribbon"><span>✦</span> XUÂN ĐINH MÙI 2027 <span>✦</span></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Sắp Tết - về đầu trang">
+      <span class="brand-mark">春</span>
+      <span><strong>Sắp Tết</strong><small>Một chút xuân, một chút thương</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+    <nav id="mainNav" aria-label="Điều hướng chính">
+      <a href="#countdown">Đếm ngược</a><a href="#calendar">Lịch âm</a><a href="#wishes">Lời chúc</a><a href="#li-xi">Lì xì</a><a href="#game">Trò chơi</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-decoration deco-left" aria-hidden="true">✿</div>
+      <div class="hero-decoration deco-right" aria-hidden="true">✿</div>
+      <div class="hero-content">
+        <p class="eyebrow">TẾT NGUYÊN ĐÁN · ĐINH MÙI</p>
+        <h1>Tết là để <em>trở về</em></h1>
+        <p class="hero-subtitle">Gói chút bình yên, trao nhau lời chúc, đón một năm mới thật nhiều điều lành.</p>
+        <a class="button button-gold" href="#countdown">Đếm ngược đến Tết <span>↓</span></a>
+        <div class="hero-date"><span>🧧</span> Mùng 1 Tết · Thứ Bảy, 06.02.2027</div>
+      </div>
+      <div class="lantern lantern-one" aria-hidden="true">🏮</div>
+      <div class="lantern lantern-two" aria-hidden="true">🏮</div>
+      <div class="flower-sprig" aria-hidden="true">✿　✽　✿</div>
+    </section>
+
+    <section class="countdown-section section-wrap" id="countdown">
+      <div class="section-heading">
+        <span class="section-kicker">CHỜ XUÂN GÕ CỬA</span>
+        <h2>Còn bao lâu nữa đến Tết?</h2>
+        <p>Mỗi ngày trôi qua, mùa đoàn viên lại gần thêm một chút.</p>
+      </div>
+      <div class="countdown-grid" role="timer" aria-label="Thời gian còn lại đến Tết">
+        <div class="time-card"><strong id="days">--</strong><span>Ngày</span></div>
+        <div class="time-card"><strong id="hours">--</strong><span>Giờ</span></div>
+        <div class="time-card"><strong id="minutes">--</strong><span>Phút</span></div>
+        <div class="time-card"><strong id="seconds">--</strong><span>Giây</span></div>
+      </div>
+      <p class="countdown-note" id="countdownNote">Đang đếm từng khoảnh khắc chờ xuân...</p>
+    </section>
+
+    <section class="calendar-section section-wrap" id="calendar">
+      <div class="section-heading">
+        <span class="section-kicker">NGÀY LÀNH THÁNG TỐT</span>
+        <h2>Lịch âm Việt Nam</h2>
+        <p>Tra cứu ngày âm, ngày dương và những dấu mốc thân thương của mùa Tết.</p>
+      </div>
+      <div class="calendar-card">
+        <div class="calendar-toolbar">
+          <button class="icon-button" id="prevMonth" aria-label="Tháng trước">‹</button>
+          <div><strong id="calendarMonth">Tháng 2, 2027</strong><small id="lunarMonthLabel">Tháng âm lịch</small></div>
+          <button class="icon-button" id="nextMonth" aria-label="Tháng sau">›</button>
+        </div>
+        <div class="calendar-weekdays"><span>CN</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span></div>
+        <div class="calendar-days" id="calendarDays" aria-live="polite"></div>
+        <div class="calendar-legend"><span><i class="legend-today"></i> Hôm nay</span><span><i class="legend-tet"></i> Mốc Tết</span><span id="selectedDateLabel">Chọn một ngày để xem thông tin</span></div>
+        <div class="date-detail" id="dateDetail">Chọn một ngày trên lịch để xem ngày âm tương ứng.</div>
+        <p class="calendar-disclaimer">Lịch âm được tính bằng thuật toán lịch âm Việt Nam phổ biến; các thông tin ngày lễ là gợi ý tham khảo.</p>
+      </div>
+    </section>
+
+    <section class="wishes-section section-wrap" id="wishes">
+      <div class="section-heading">
+        <span class="section-kicker">TRAO NHAU ĐIỀU TỐT LÀNH</span>
+        <h2>Gửi lời chúc đầu năm</h2>
+        <p>Chọn một lời chúc, gửi đến người bạn thương.</p>
+      </div>
+      <div class="wishes-layout">
+        <div class="wish-tabs" role="group" aria-label="Chọn đối tượng nhận lời chúc">
+          <button class="wish-tab active" data-wish="family">👨‍👩‍👧 Gia đình</button>
+          <button class="wish-tab" data-wish="friends">🌼 Bạn bè</button>
+          <button class="wish-tab" data-wish="work">🌟 Đồng nghiệp</button>
+          <button class="wish-tab" data-wish="love">❤️ Người thương</button>
+        </div>
+        <article class="wish-card">
+          <div class="wish-card-flower">✿</div>
+          <p class="wish-label">LỜI CHÚC CỦA BẠN</p>
+          <blockquote id="wishText">Chúc gia đình mình năm mới bình an, mạnh khỏe, nhà luôn đầy ắp tiếng cười và mỗi ngày đều có điều đáng mong chờ.</blockquote>
+          <div class="wish-actions"><button class="button button-red" id="newWish">Đổi lời chúc ↻</button><button class="button button-outline" id="copyWish">Sao chép lời chúc</button></div>
+          <p class="copy-status" id="copyStatus" aria-live="polite"></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="lixi-section section-wrap" id="li-xi">
+      <div class="section-heading">
+        <span class="section-kicker">LỘC XUÂN MAY MẮN</span>
+        <h2>Tính ngân sách lì xì</h2>
+        <p>Lên kế hoạch khoản lì xì đầu năm để trao lộc vui vẻ, vừa vặn với ngân sách.</p>
+      </div>
+      <div class="lixi-card">
+        <div class="lixi-illustration" aria-hidden="true"><div class="envelope">福</div><span>🌸</span><span>✨</span></div>
+        <form id="lixiForm" class="lixi-form">
+          <label for="recipientCount">Số người nhận lì xì</label>
+          <div class="input-with-suffix"><input id="recipientCount" type="number" min="0" max="10000" value="10" required><span>người</span></div>
+          <label for="amountPerPerson">Số tiền mỗi phong bao</label>
+          <div class="input-with-suffix"><input id="amountPerPerson" type="number" min="0" step="1000" value="50000" required><span>VNĐ</span></div>
+          <label for="extraBudget">Khoản dự phòng (tùy chọn)</label>
+          <div class="input-with-suffix"><input id="extraBudget" type="number" min="0" step="1000" value="100000" required><span>VNĐ</span></div>
+          <button class="button button-red" type="submit">Tính ngân sách</button>
+          <div class="lixi-result" aria-live="polite"><small>TỔNG NGÂN SÁCH DỰ KIẾN</small><strong id="lixiTotal">600.000 ₫</strong><span id="lixiBreakdown">500.000 ₫ tiền lì xì + 100.000 ₫ dự phòng</span></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="game-section section-wrap" id="game">
+      <div class="section-heading">
+        <span class="section-kicker">CHƠI VUI ĐÓN LỘC</span>
+        <h2>Ghép thẻ may mắn</h2>
+        <p>Lật thẻ tìm các cặp biểu tượng mùa xuân. Thử hoàn thành với ít lượt nhất nhé!</p>
+      </div>
+      <div class="game-panel">
+        <div class="game-toolbar"><span>🎴 Lượt lật: <strong id="moveCount">0</strong></span><span>🌸 Đã ghép: <strong id="matchCount">0/6</strong></span><button class="button button-outline button-small" id="restartGame">Chơi lại</button></div>
+        <div class="memory-grid" id="memoryGrid" aria-label="Trò chơi ghép cặp"></div>
+        <p class="game-message" id="gameMessage" aria-live="polite">Lật hai thẻ để tìm cặp giống nhau!</p>
+      </div>
+    </section>
+
+    <section class="closing-banner">
+      <div class="closing-flower" aria-hidden="true">✿</div>
+      <p>Đi đâu rồi cũng mong ngày trở về</p>
+      <h2>Chúc mừng năm mới 2027</h2>
+      <span>An khang · Thịnh vượng · Vạn sự như ý</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#home">春 Sắp Tết</a>
+    <p>Một góc nhỏ để đón xuân, gửi lời thương.</p>
+    <p class="footer-credit">Được làm với ♥ và không khí Tết Việt Nam.</p>
+    <a class="back-top" href="#home">Lên đầu trang ↑</a>
+  </footer>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
