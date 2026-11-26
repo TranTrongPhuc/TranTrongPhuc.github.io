@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+  <div class="falling-side falling-left" id="fallingLeft" aria-hidden="true"></div>
+  <div class="falling-side falling-right" id="fallingRight" aria-hidden="true"></div>
   <div class="top-ribbon"><span>✦</span> XUÂN ĐINH MÙI 2027 <span>✦</span></div>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Sắp Tết - về đầu trang">
@@ -20,7 +22,7 @@
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">☰</button>
     <nav id="mainNav" aria-label="Điều hướng chính">
-      <a href="#countdown">Đếm ngược</a><a href="#calendar">Lịch âm</a><a href="#wishes">Lời chúc</a><a href="#li-xi">Lì xì</a><a href="#game">Trò chơi</a><a href="#lucky-envelope">Bóc lì xì</a>
+      <a href="#countdown">Đếm ngược</a><a href="#calendar">Lịch âm</a><a href="#wishes">Lời chúc</a><a href="#li-xi">Lì xì</a><a href="#game">Trò chơi</a><a href="#lucky-envelope">Bóc lì xì</a><a href="#lucky-number">Số may mắn</a>
     </nav>
   </header>
 
@@ -131,6 +133,31 @@
       </div>
       <div class="memory-wrap"><div class="section-heading compact-heading"><span class="section-kicker">THỬ THÁCH NHẸ NHÀNG</span><h2>Ghép thẻ may mắn</h2><p>Lật thẻ tìm các cặp biểu tượng mùa xuân.</p></div><div class="game-panel"><div class="game-toolbar"><span>🎴 Lượt lật: <strong id="moveCount">0</strong></span><span>🌸 Đã ghép: <strong id="matchCount">0/6</strong></span><button class="button button-outline button-small" id="restartGame">Chơi lại</button></div><div class="memory-grid" id="memoryGrid" aria-label="Trò chơi ghép cặp"></div><p class="game-message" id="gameMessage" aria-live="polite">Lật hai thẻ để tìm cặp giống nhau!</p></div></div>
     </section>
+
+    <section class="lucky-number-section section-wrap" id="lucky-number">
+      <div class="section-heading">
+        <span class="section-kicker">LỘC XUÂN NGẪU NHIÊN</span>
+        <h2>Con số may mắn đầu năm ✨</h2>
+        <p>Bấm nhận một con số ngẫu nhiên để lấy hên đầu xuân. Đây chỉ là trò vui giải trí, không phải dự đoán kết quả xổ số hay gợi ý cá cược.</p>
+      </div>
+      <div class="lucky-number-card">
+        <div class="smoke-layer" aria-hidden="true">
+          <span class="smoke smoke-a"></span><span class="smoke smoke-b"></span><span class="smoke smoke-c"></span>
+        </div>
+        <div class="fortune-deity" id="fortuneDeity" aria-hidden="true">
+          <span class="deity-glow"></span>
+          <span class="deity-emoji">🧧</span>
+          <span class="deity-coins">💰 ✨ 💰</span>
+          <span class="deity-caption">THẦN TÀI GÕ CỬA</span>
+        </div>
+        <p class="lucky-number-label">CON SỐ LẤY HÊN CỦA BẠN</p>
+        <div class="lucky-number-display" id="luckyNumberDisplay" aria-live="polite">??</div>
+        <p class="lucky-number-message" id="luckyNumberMessage">Mời bạn nhận lộc xuân từ Thần Tài!</p>
+        <button class="button button-red" id="drawLuckyNumber" type="button">✨ Xin số may mắn</button>
+        <p class="lucky-number-disclaimer">Số được tạo ngẫu nhiên mỗi lần bấm, không có khả năng dự báo tương lai và không liên quan đến tiền thưởng thật.</p>
+      </div>
+    </section>
+
     <section class="lucky-envelope-section section-wrap" id="lucky-envelope"><div class="section-heading"><span class="section-kicker">VẬN MAY ĐẦU NĂM</span><h2>Bóc lì xì hên xui — trúng 1 tỷ! 🧧</h2><p>Chọn một phong bao để nhận lộc xuân ảo. Phần thưởng chỉ để giải trí, không quy đổi thành tiền thật.</p></div><div class="lucky-envelope-panel"><div class="jackpot-stamp">LỘC PHÁT<br><strong>2027</strong></div><div class="envelope-pick-grid" id="envelopePickGrid"><button type="button" class="pick-envelope" data-prize="10000"><span>🧧</span><small>Phong bao 1</small></button><button type="button" class="pick-envelope" data-prize="50000"><span>🧧</span><small>Phong bao 2</small></button><button type="button" class="pick-envelope" data-prize="100000"><span>🧧</span><small>Phong bao 3</small></button><button type="button" class="pick-envelope" data-prize="500000"><span>🧧</span><small>Phong bao 4</small></button><button type="button" class="pick-envelope" data-prize="1000000"><span>🧧</span><small>Phong bao 5</small></button><button type="button" class="pick-envelope" data-prize="10000000"><span>🧧</span><small>Phong bao 6</small></button><button type="button" class="pick-envelope" data-prize="50000000"><span>🧧</span><small>Phong bao 7</small></button><button type="button" class="pick-envelope jackpot-envelope" data-prize="1000000000"><span>🧧</span><small>Phong bao bí ẩn</small></button></div><div class="jackpot-result" id="jackpotResult" aria-live="polite"><div class="jackpot-result-icon">✨</div><p>Chọn một phong bao bất kỳ</p><strong>Biết đâu là 1.000.000.000 ₫!</strong><span>Chúc bạn năm mới nhiều niềm vui và may mắn.</span></div><button class="button button-red" type="button" id="resetEnvelopes">Xáo lại phong bao</button></div></section>
 
     <section class="closing-banner">
