@@ -311,28 +311,78 @@
     }
   });
 
-  // A random lucky number for entertainment only; it does not predict lottery results.
+  // Random lucky numbers for entertainment only; no prediction or betting advice.
   const drawLuckyNumber = $("drawLuckyNumber");
-  if (drawLuckyNumber) {
-    drawLuckyNumber.addEventListener("click", () => {
-      const number = Math.floor(Math.random() * 100).toString().padStart(2, "0");
-      const card = document.querySelector(".lucky-number-card");
-      const display = $("luckyNumberDisplay");
-      const message = $("luckyNumberMessage");
-      card.classList.remove("reveal");
-      // Restart the reveal animation on every draw.
-      void display.offsetWidth;
-      display.textContent = number;
-      card.classList.add("reveal");
-      const blessings = [
-        "Thần Tài gửi bạn một lời chúc bình an 🌸",
-        "Lấy may đầu xuân — vui vẻ là lộc lớn nhất ✨",
-        "Chúc năm mới đủ đầy, sức khỏe và thuận hòa 🧧",
-        "Một con số ngẫu nhiên, một lời chúc thật lành 🌟",
-        "Xuân mới rộn ràng, vạn sự hanh thông 🍀"
-      ];
-      message.textContent = blessings[Math.floor(Math.random() * blessings.length)];
-    });
+  const drawVietlottNumbers = $("drawVietlottNumbers");
+  if (drawLuckyNumber && drawVietlottNumbers) {
+    let revealTimer;
+    const card = document.querySelector(".lucky-number-card");
+    const display = $("luckyNumberDisplay");
+    const vietlottDisplay = $("vietlottNumbersDisplay");
+    const message = $("luckyNumberMessage");
+    const label = $("luckyNumberLabel");
+    const deities = $("fortuneDeity");
+    const buttons = [drawLuckyNumber, drawVietlottNumbers];
+
+    function runLuckyReveal(mode) {
+      let numbers;
+      if (mode === "vietlott") {
+        const pool = Array.from({ length: 55 }, (_, i) => i + 1);
+        numbers = [];
+        while (numbers.length < 6) {
+          const index = Math.floor(Math.random() * pool.length);
+          numbers.push(pool.splice(index, 1)[0]);
+        }
+        numbers.sort((a, b) => a - b);
+      } else {
+        numbers = [Math.floor(Math.random() * 100).toString().padStart(2, "0")];
+      }
+
+      window.clearTimeout(revealTimer);
+      card.classList.remove("charging", "reveal", "number-explosion");
+      card.classList.add("charging");
+      buttons.forEach(button => { button.disabled = true; });
+      drawLuckyNumber.textContent = "✨ Thần Tài đang ban lộc...";
+      drawVietlottNumbers.textContent = "✨ Đang chuẩn bị bộ số...";
+      display.textContent = "??";
+      display.hidden = mode === "vietlott";
+      vietlottDisplay.hidden = mode !== "vietlott";
+      vietlottDisplay.innerHTML = "";
+      label.textContent = mode === "vietlott" ? "BỘ SỐ NGẪU NHIÊN 6/55" : "CON SỐ LẤY HÊN CỦA BẠN";
+      display.setAttribute("aria-label", "Đang chuẩn bị tiết lộ con số may mắn");
+      deities.setAttribute("aria-hidden", "true");
+      message.textContent = "Ánh vàng hội tụ, Thần Tài sắp xuất hiện...";
+
+      // Keep the golden flash over the card for five seconds before revealing the figures and numbers.
+      revealTimer = window.setTimeout(() => {
+        const blessings = [
+          "Thần Tài gửi bạn một lời chúc bình an 🌸",
+          "Lấy may đầu xuân — vui vẻ là lộc lớn nhất ✨",
+          "Chúc năm mới đủ đầy, sức khỏe và thuận hòa 🧧",
+          "Một bộ số ngẫu nhiên, một lời chúc thật lành 🌟",
+          "Xuân mới rộn ràng, vạn sự hanh thông 🍀"
+        ];
+        card.classList.remove("charging");
+        card.classList.add("reveal");
+        deities.setAttribute("aria-hidden", "false");
+        message.textContent = blessings[Math.floor(Math.random() * blessings.length)];
+        if (mode === "vietlott") {
+          vietlottDisplay.innerHTML = numbers.map(n => `<span class="vietlott-number-ball">${String(n).padStart(2, "0")}</span>`).join("");
+          vietlottDisplay.setAttribute("aria-label", `Bộ sáu số ngẫu nhiên: ${numbers.join(", ")}`);
+        } else {
+          display.textContent = numbers[0];
+          display.setAttribute("aria-label", `Con số may mắn: ${numbers[0]}`);
+        }
+        // Let the two Thần Tài figures appear first, then burst the selected result into view.
+        window.setTimeout(() => card.classList.add("number-explosion"), 650);
+        buttons.forEach(button => { button.disabled = false; });
+        drawLuckyNumber.textContent = "✨ Xin số may mắn";
+        drawVietlottNumbers.textContent = "🎟️ Tạo bộ số ngẫu nhiên 6/55";
+      }, 5000);
+    }
+
+    drawLuckyNumber.addEventListener("click", () => runLuckyReveal("lucky"));
+    drawVietlottNumbers.addEventListener("click", () => runLuckyReveal("vietlott"));
   }
 
   // Mobile navigation
