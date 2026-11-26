@@ -141,20 +141,24 @@
         <p>Bấm nhận một con số ngẫu nhiên để lấy hên đầu xuân. Đây chỉ là trò vui giải trí, không phải dự đoán kết quả xổ số hay gợi ý cá cược.</p>
       </div>
       <div class="lucky-number-card">
+        <div class="golden-flash" aria-hidden="true"><span>✨ LỘC XUÂN ✨</span></div>
         <div class="smoke-layer" aria-hidden="true">
           <span class="smoke smoke-a"></span><span class="smoke smoke-b"></span><span class="smoke smoke-c"></span>
+          <span class="smoke smoke-d"></span><span class="smoke smoke-e"></span>
         </div>
-        <div class="fortune-deity" id="fortuneDeity" aria-hidden="true">
-          <span class="deity-glow"></span>
-          <span class="deity-emoji">🧧</span>
-          <span class="deity-coins">💰 ✨ 💰</span>
-          <span class="deity-caption">THẦN TÀI GÕ CỬA</span>
+        <div class="fortune-deities" id="fortuneDeity" aria-hidden="true">
+          <div class="fortune-figure fortune-left"><span class="figure-aura"></span><span class="figure-hat">👑</span><span class="figure-face">🧔🏻‍♂️</span><span class="figure-robe">🧧</span><small>CHIÊU TÀI</small></div>
+          <div class="fortune-figure fortune-right"><span class="figure-aura"></span><span class="figure-hat">👑</span><span class="figure-face">🧔🏽‍♂️</span><span class="figure-robe">💰</span><small>NẠP PHÚC</small></div>
         </div>
-        <p class="lucky-number-label">CON SỐ LẤY HÊN CỦA BẠN</p>
+        <p class="lucky-number-label" id="luckyNumberLabel">CON SỐ LẤY HÊN CỦA BẠN</p>
         <div class="lucky-number-display" id="luckyNumberDisplay" aria-live="polite">??</div>
+        <div class="vietlott-number-display" id="vietlottNumbersDisplay" aria-live="polite" hidden></div>
         <p class="lucky-number-message" id="luckyNumberMessage">Mời bạn nhận lộc xuân từ Thần Tài!</p>
-        <button class="button button-red" id="drawLuckyNumber" type="button">✨ Xin số may mắn</button>
-        <p class="lucky-number-disclaimer">Số được tạo ngẫu nhiên mỗi lần bấm, không có khả năng dự báo tương lai và không liên quan đến tiền thưởng thật.</p>
+        <div class="lucky-number-actions">
+          <button class="button button-red" id="drawLuckyNumber" type="button">✨ Xin số may mắn</button>
+          <button class="button button-outline" id="drawVietlottNumbers" type="button">🎟️ Tạo bộ số ngẫu nhiên 6/55</button>
+        </div>
+        <p class="lucky-number-disclaimer">Các số được tạo hoàn toàn ngẫu nhiên chỉ để giải trí, không dự đoán kết quả Vietlott, không làm tăng xác suất trúng và không phải lời khuyên mua vé/cá cược.</p>
       </div>
     </section>
 
