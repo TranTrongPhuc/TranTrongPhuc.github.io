@@ -289,6 +289,52 @@
   $("envelopePickGrid").querySelectorAll(".pick-envelope").forEach(b=>b.addEventListener("click",()=>{if(envelopeOpened)return;envelopeOpened=true;const prize=Number(b.dataset.prize);$("envelopePickGrid").querySelectorAll(".pick-envelope").forEach(x=>{x.disabled=true;x.classList.toggle("opened",x===b);});const jackpot=prize===1000000000;$("jackpotResult").innerHTML=`<div class="jackpot-result-icon">${jackpot?"🎉✨🧧":"🧧🌸"}</div><p>${jackpot?"ĐẠI PHÁT! BẠN ĐÃ TRÚNG JACKPOT ẢO!":"LỘC XUÂN CỦA BẠN"}</p><strong>${prizeFormat(prize)}</strong><span>${jackpot?"Trúng 1 tỷ may mắn trong trò chơi! Chúc mừng năm mới!":"Một chút lộc xuân, thật nhiều niềm vui. Chúc mừng năm mới!"}</span>`;b.querySelector("small").textContent=jackpot?"TRÚNG 1 TỶ!":"Đã bóc";}));
   $("resetEnvelopes").addEventListener("click",()=>{envelopeOpened=false;const buttons=Array.from($("envelopePickGrid").querySelectorAll(".pick-envelope"));const prizes=buttons.map(b=>Number(b.dataset.prize));shuffle(prizes);buttons.forEach((b,i)=>{b.dataset.prize=String(prizes[i]);b.disabled=false;b.classList.remove("opened");b.querySelector("small").textContent=i===7?"Phong bao bí ẩn":`Phong bao ${i+1}`;});$("jackpotResult").innerHTML='<div class="jackpot-result-icon">✨</div><p>Chọn một phong bao bất kỳ</p><strong>Biết đâu là 1.000.000.000 ₫!</strong><span>Chúc bạn năm mới nhiều niềm vui và may mắn.</span>';});
 
+
+  // Decorative snow/blossom particles fall only along the two page edges.
+  const particleSets = [
+    { id: "fallingLeft", chars: ["❄", "✿", "✧", "❅"] },
+    { id: "fallingRight", chars: ["❄", "✿", "❀", "✧"] }
+  ];
+  particleSets.forEach(set => {
+    const host = $(set.id);
+    if (!host) return;
+    for (let i = 0; i < 14; i++) {
+      const particle = document.createElement("span");
+      particle.className = "fall-particle";
+      particle.textContent = set.chars[Math.floor(Math.random() * set.chars.length)];
+      particle.style.left = `${8 + Math.random() * 80}%`;
+      particle.style.animationDuration = `${8 + Math.random() * 12}s`;
+      particle.style.animationDelay = `${-Math.random() * 18}s`;
+      particle.style.fontSize = `${10 + Math.random() * 13}px`;
+      particle.style.setProperty("--drift", `${Math.round(Math.random() * 55 - 27)}px`);
+      host.appendChild(particle);
+    }
+  });
+
+  // A random lucky number for entertainment only; it does not predict lottery results.
+  const drawLuckyNumber = $("drawLuckyNumber");
+  if (drawLuckyNumber) {
+    drawLuckyNumber.addEventListener("click", () => {
+      const number = Math.floor(Math.random() * 100).toString().padStart(2, "0");
+      const card = document.querySelector(".lucky-number-card");
+      const display = $("luckyNumberDisplay");
+      const message = $("luckyNumberMessage");
+      card.classList.remove("reveal");
+      // Restart the reveal animation on every draw.
+      void display.offsetWidth;
+      display.textContent = number;
+      card.classList.add("reveal");
+      const blessings = [
+        "Thần Tài gửi bạn một lời chúc bình an 🌸",
+        "Lấy may đầu xuân — vui vẻ là lộc lớn nhất ✨",
+        "Chúc năm mới đủ đầy, sức khỏe và thuận hòa 🧧",
+        "Một con số ngẫu nhiên, một lời chúc thật lành 🌟",
+        "Xuân mới rộn ràng, vạn sự hanh thông 🍀"
+      ];
+      message.textContent = blessings[Math.floor(Math.random() * blessings.length)];
+    });
+  }
+
   // Mobile navigation
   const menuToggle = $("menuToggle"), mainNav = $("mainNav");
   menuToggle.addEventListener("click", () => {
