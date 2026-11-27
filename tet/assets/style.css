@@ -144,12 +144,25 @@ h1, h2, blockquote { font-family: "Lora", Georgia, "Times New Roman", serif; }
 @media(max-width:960px){.folk-games-grid{grid-template-columns:1fr 1fr}.folk-game-card:last-child{grid-column:1/-1}}@media(max-width:600px){.folk-games-grid{grid-template-columns:1fr}.folk-game-card:last-child{grid-column:auto}.envelope-pick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:55px}.pick-envelope{min-height:112px}.quan-pit{min-height:72px;font-size:.65rem}.quan-pit span{font-size:.58rem}}
 
 
-/* Falling snow/petal decorations along both sides */
-.falling-side { position: fixed; top: 0; bottom: 0; width: min(11vw, 120px); z-index: 12; pointer-events: none; overflow: hidden; opacity: .78; }
-.falling-left { left: 0; }.falling-right { right: 0; }
-.fall-particle { position: absolute; top: -35px; display: block; color: #fff7dc; text-shadow: 0 1px 6px #b54b4b55; animation: sideFall linear infinite; will-change: transform; }
-.falling-right .fall-particle { color: #f4c8cf; }
-@keyframes sideFall { 0% { transform: translate3d(0,-30px,0) rotate(0deg); opacity: 0; } 10% { opacity: .9; } 90% { opacity: .85; } 100% { transform: translate3d(var(--drift, 24px),110vh,0) rotate(420deg); opacity: 0; } }
+/* Photorealistic blossom branches frame the page while keeping the center clear. */
+.tet-flower-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  opacity: .94;
+  filter: drop-shadow(0 2px 3px rgba(67, 27, 8, .12));
+}
+@media (max-width: 700px) {
+  .tet-flower-frame { opacity: .86; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tet-flower-frame { filter: none; }
+}
 
 /* Random lucky number with a dreamy God-of-Wealth arrival */
 .lucky-number-section { background: linear-gradient(180deg, #fffaf0, #fce8d0); max-width: none; }
@@ -174,8 +187,8 @@ h1, h2, blockquote { font-family: "Lora", Georgia, "Times New Roman", serif; }
 @keyframes luckyNumberPop { 0% { transform: scale(.45) rotate(-10deg); opacity: .1; } 75% { transform: scale(1.1) rotate(3deg); } 100% { transform: scale(1) rotate(0); opacity: 1; } }
 .lucky-number-message { min-height: 1.5em; color: #8f1018; font-weight: 750; }
 .lucky-number-disclaimer { max-width: 520px; margin: 18px auto 0; color: var(--muted); font-size: .7rem; line-height: 1.65; }
-@media (prefers-reduced-motion: reduce) { .fall-particle, .deity-glow, .lucky-number-card.reveal .lucky-number-display, .lucky-number-card.reveal .smoke { animation: none !important; } }
-@media (max-width: 600px) { .falling-side { width: 22px; opacity: .5; }.deity-emoji { width: 80px; height: 80px; font-size: 2.8rem; }.fortune-deity { min-height: 130px; } }
+@media (prefers-reduced-motion: reduce) { .deity-glow, .lucky-number-card.reveal .lucky-number-display, .lucky-number-card.reveal .smoke { animation: none !important; } }
+@media (max-width: 600px) { .deity-emoji { width: 80px; height: 80px; font-size: 2.8rem; }.fortune-deity { min-height: 130px; } }
 
 /* Five-second golden flash, twin fortune figures, rising mist and burst reveal */
 .lucky-number-card { min-height: 500px; }
@@ -222,3 +235,117 @@ h1, h2, blockquote { font-family: "Lora", Georgia, "Times New Roman", serif; }
 .lucky-number-card.number-explosion .vietlott-number-ball { animation: numberBurst .9s cubic-bezier(.12,1.7,.35,1) both; }
 .lucky-number-card.charging #drawLuckyNumber, .lucky-number-card.charging #drawVietlottNumbers { visibility: hidden; }
 @media (max-width: 600px) { .lucky-number-actions { flex-direction: column; width: 100%; max-width: 330px; } .lucky-number-actions .button { width: 100%; } .vietlott-number-display { gap: 8px; } }
+
+
+/* Lucky name wheel */
+.name-wheel-panel { width: 100%; max-width: 780px; margin: 30px auto 0; padding: clamp(18px, 4vw, 30px); border: 1px solid #efd39a; border-radius: 24px; background: linear-gradient(145deg, #fffaf0, #fff1d0); box-shadow: 0 16px 40px rgba(130, 64, 12, .12); position: relative; z-index: 2; }
+.name-wheel-heading { text-align: center; margin-bottom: 18px; }
+.name-wheel-heading h3 { margin: 5px 0; color: var(--red); font-size: clamp(1.35rem, 4vw, 1.9rem); }
+.name-wheel-heading p { margin: 6px 0 0; color: var(--muted); }
+.wheel-label { display: block; font-weight: 800; margin-bottom: 7px; }
+#wheelNames { display: block; width: 100%; resize: vertical; min-height: 130px; padding: 12px 14px; border: 1px solid #e5c98e; border-radius: 14px; color: var(--ink); background: rgba(255,255,255,.9); outline-color: var(--gold-deep); }
+.wheel-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 12px 0 18px; }
+#wheelNameCount { color: var(--muted); font-weight: 700; }
+.wheel-stage { width: min(100%, 420px); aspect-ratio: 1; margin: 0 auto; position: relative; }
+#nameWheelCanvas { display: block; width: 100%; height: 100%; border-radius: 50%; border: 8px solid #e8b94f; box-shadow: 0 8px 24px rgba(91, 28, 12, .22), inset 0 0 0 5px #fff4d2; transform: rotate(0deg); }
+.wheel-pointer { position: absolute; z-index: 3; top: -5px; left: 50%; transform: translateX(-50%); color: #8f1018; font-size: 38px; line-height: 1; filter: drop-shadow(0 2px 2px #9a6a25); }
+.wheel-center { position: absolute; z-index: 2; width: 19%; aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%,-50%); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 50%; background: radial-gradient(circle, #fff9dd, #e9b84d); border: 4px solid #fff0bd; box-shadow: 0 2px 12px #a56a1b66; font-size: clamp(18px, 4vw, 28px); }
+.wheel-center small { font-size: clamp(6px, 1.4vw, 9px); font-weight: 900; color: #7c1515; }
+.wheel-winner { margin: 18px auto 8px; text-align: center; color: #8f1018; font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 900; min-height: 2.2em; }
+#spinNameWheel:disabled { opacity: .65; cursor: wait; }
+@media (max-width: 600px) { .wheel-controls { align-items: stretch; flex-direction: column; } .wheel-controls .button { width: 100%; } .wheel-stage { width: min(100%, 340px); } }
+
+/* Scenic Tết landing page inspired by the supplied reference image */
+:root { --red: #9c1018; --red-dark: #61080d; --red-mid: #c5252d; --gold: #ffd36f; --gold-deep: #bc8022; }
+body { background: #fff8e9; }
+.scenic-header { position: absolute; top: 0; left: 0; right: 0; z-index: 30; height: 76px; padding: 0 clamp(18px, 4vw, 62px); background: linear-gradient(180deg, rgba(35, 20, 22, .58), rgba(35, 20, 22, .04)); border-bottom: 1px solid rgba(255, 220, 145, .18); color: #fff5db; backdrop-filter: blur(3px); }
+.scenic-header .brand-mark { color: #7c1014; background: linear-gradient(145deg,#ffe9a5,#e8ac3f); box-shadow: inset 0 0 0 2px #fff0bd, 0 3px 12px #30060955; }
+.scenic-header .brand strong { color: #fff1c8; font-family: "Lora", Georgia, serif; text-shadow: 0 2px 5px #300609; }
+.scenic-header .brand small { color: #ffe4b4; }
+.scenic-header nav { color: #fff4dc; gap: clamp(10px, 1.9vw, 28px); font-size: .8rem; text-shadow: 0 1px 5px #300609; }
+.scenic-header nav a { padding: 8px 0; border-bottom: 1px solid transparent; }
+.scenic-header nav a:hover { color: #ffda75; border-bottom-color: #ffda75; }
+.scenic-header .menu-toggle { color: #fff1c8; background: #711018a8; border-color: #f1ca70; }
+.scenic-hero { min-height: 900px; padding: 112px clamp(16px, 3vw, 42px) 30px; display: flex; flex-direction: column; justify-content: flex-start; gap: 20px; background: #54221b url("./tet-spring-scene.webp") center 46% / cover no-repeat; }
+.scenic-hero::before, .scenic-hero::after { display: none; }
+.scenic-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(35,14,13,.18) 0%, rgba(43,10,10,.42) 43%, rgba(34,12,10,.7) 100%); }
+.scenic-content { max-width: 850px; width: 100%; margin: 0 auto; flex: 0 0 auto; }
+.scenic-content .eyebrow { margin: 0 0 10px; color: #ffdfa0; text-shadow: 0 2px 7px #4a090d; font-size: .68rem; }
+.hero-plaque { width: min(640px, 92%); min-height: 102px; margin: 0 auto; padding: 12px 22px 16px; display: flex; align-items: center; justify-content: center; gap: 18px; position: relative; background: linear-gradient(160deg,#c92c26 0%,#8f0b13 45%,#65070c 100%); border: 2px solid #ffda79; outline: 1px solid #a96919; outline-offset: 4px; box-shadow: inset 0 0 0 4px #f6c65d50, 0 12px 26px #26050680; clip-path: polygon(4% 0,96% 0,100% 18%,97% 85%,90% 100%,10% 100%,3% 85%,0 18%); }
+.hero-plaque::before { content: ""; position: absolute; inset: 7px; border: 1px solid #ffd56c99; pointer-events: none; }
+.hero-plaque h1 { margin: 0; color: #ffdb72; font-family: "Lora", Georgia, serif; font-size: clamp(2.7rem, 6.5vw, 5.1rem); line-height: 1.05; letter-spacing: -.035em; text-shadow: 0 3px 0 #9c4a08, 0 6px 12px #320408; }
+.plaque-cloud { color: #ffdf94; font-size: clamp(1.6rem, 3vw, 2.6rem); }
+.hero-greeting { margin: 15px 0 2px; color: #ffe4a1; font-family: "Lora", Georgia, serif; font-size: clamp(1.4rem, 3.4vw, 2.6rem); font-style: italic; text-shadow: 0 2px 6px #37070a, 0 0 16px #b03a12; }
+.hero-motto { margin: 6px 0; color: #fff0c5; font-family: "Lora", Georgia, serif; font-size: clamp(.8rem, 1.7vw, 1.08rem); text-shadow: 0 2px 5px #310507; }
+.scenic-content .hero-date { margin-top: 8px; color: #ffe7b8; font-weight: 650; text-shadow: 0 2px 5px #300609; }
+.hero-shortcuts { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.5vw, 20px); width: min(100%, 1050px); margin: 5px auto 0; }
+.hero-shortcut { min-width: 0; min-height: 222px; padding: 13px 12px 14px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; color: #fff3d2; border: 1px solid #ffda72; border-radius: 14px; background: linear-gradient(155deg, rgba(195,33,32,.96), rgba(111,5,13,.97)); box-shadow: inset 0 0 0 3px #f8ce5c26, 0 8px 22px #21060870; transition: transform .2s, box-shadow .2s; }
+.hero-shortcut:hover { transform: translateY(-5px); box-shadow: inset 0 0 0 3px #f8ce5c40, 0 13px 28px #21060890; }
+.shortcut-art { display: grid; place-items: center; width: 68px; height: 66px; margin-bottom: 8px; font-size: 2.65rem; border-radius: 14px; background: radial-gradient(circle, #fff1c9 0%, #eab34c 68%, #a15a18 100%); box-shadow: inset 0 0 0 2px #fff1bb, 0 4px 10px #3b070b70; }
+.deity-art { background: radial-gradient(circle,#ffe8a0,#e8a831 68%,#a35a12); }
+.vietlott-art { font-size: 2.2rem; }
+.wheel-art { font-size: 2.6rem; }
+.hero-shortcut strong { color: #ffe18a; font-family: "Lora", Georgia, serif; font-size: clamp(.84rem, 1.35vw, 1.06rem); line-height: 1.35; }
+.hero-shortcut small { min-height: 39px; margin: 6px 0 10px; color: #fff0db; font-size: clamp(.66rem, .9vw, .76rem); line-height: 1.45; }
+.shortcut-cta { display: inline-flex; justify-content: center; margin-top: auto; min-width: 110px; padding: 6px 13px; color: #6c0a0e; font-size: .76rem; font-weight: 850; border: 1px solid #fff0aa; border-radius: 999px; background: linear-gradient(180deg,#ffe89a,#e8ad36); box-shadow: 0 2px 0 #8b4a12; }
+.hero-bottom-row { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(230px, .85fr); gap: 18px; align-items: stretch; width: min(100%, 850px); margin: 0 auto; }
+.hero-countdown, .hero-lunar-card { color: #612217; border: 1px solid #edc66d; border-radius: 15px; background: linear-gradient(145deg, rgba(255,245,211,.97), rgba(255,220,154,.96)); box-shadow: 0 9px 24px #2b09075c, inset 0 0 0 3px #fff7dc7a; }
+.hero-countdown { padding: 12px 16px 9px; }
+.mini-panel-heading { display: flex; align-items: center; justify-content: center; gap: 10px; color: #6e2115; font-family: "Lora", Georgia, serif; }
+.mini-panel-heading > span { color: #c88a24; font-size: 1.2rem; }
+.mini-panel-heading strong { display: block; font-size: 1.12rem; }
+.mini-panel-heading small { display: block; color: #98664a; font-family: "Be Vietnam Pro", sans-serif; font-size: .66rem; }
+.hero-countdown .countdown-grid { max-width: 100%; margin: 8px auto 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0; align-items: center; }
+.hero-countdown .time-card { padding: 0 5px 2px; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+.hero-countdown .time-card strong { color: #b31c1e; font-family: "Be Vietnam Pro", sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem); }
+.hero-countdown .time-card span { margin-top: 0; color: #7b4b32; font-size: .72rem; }
+.hero-countdown .countdown-grid i { height: 38px; width: 1px; background: #d5a85c; }
+.hero-countdown .countdown-note { margin: 4px 0 0; color: #93643c; font-size: .62rem; }
+.hero-lunar-card { display: flex; align-items: center; justify-content: center; gap: 15px; padding: 20px 16px; text-align: left; transition: transform .2s; }
+.hero-lunar-card:hover { transform: translateY(-3px); }
+.lunar-icon { display: grid; place-items: center; width: 54px; height: 54px; flex: 0 0 auto; color: #fff1c6; font-size: 2rem; border-radius: 12px; background: linear-gradient(145deg,#b51d24,#760b12); box-shadow: inset 0 0 0 2px #f1c85c; }
+.hero-lunar-card strong, .hero-lunar-card b, .hero-lunar-card small, .hero-lunar-card .lunar-link { display: block; }
+.hero-lunar-card strong { color: #6a2015; font-family: "Lora", Georgia, serif; font-size: 1.05rem; }
+.hero-lunar-card b { margin-top: 7px; color: #b21d1e; font-size: .83rem; }
+.hero-lunar-card small { color: #865c43; font-size: .75rem; }
+.lunar-link { margin-top: 8px; color: #8e1518; font-size: .72rem; font-weight: 850; }
+/* The scene image replaces the previous full-screen blossom overlay. */
+.tet-flower-frame { display: none !important; }
+.countdown-section { display: none; }
+@media (min-width: 1400px) { .scenic-hero { min-height: 100vh; } }
+@media (max-width: 900px) {
+  .scenic-header { padding-inline: 18px; }
+  .scenic-header nav { gap: 12px; font-size: .72rem; }
+  .scenic-hero { min-height: 0; padding-top: 108px; }
+  .hero-shortcuts { grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 650px; }
+  .hero-shortcut { min-height: 195px; }
+  .hero-bottom-row { max-width: 650px; }
+}
+@media (max-width: 620px) {
+  .scenic-header { height: 68px; }
+  .scenic-header .brand-mark { width: 36px; height: 36px; font-size: 1.3rem; }
+  .scenic-header .brand strong { font-size: 1rem; }
+  .scenic-header .brand small { font-size: .6rem; }
+  .scenic-header nav { display: none; position: absolute; top: 61px; left: 12px; right: 12px; padding: 12px; flex-direction: column; align-items: stretch; gap: 2px; border: 1px solid #e8bf62; border-radius: 12px; background: rgba(91,8,13,.97); }
+  .scenic-header nav.open { display: flex; }
+  .scenic-header nav a { padding: 10px 12px; }
+  .scenic-header .menu-toggle { display: block; }
+  .scenic-hero { padding: 96px 14px 24px; gap: 16px; background-position: center; }
+  .hero-plaque { min-height: 80px; padding: 10px 12px; gap: 8px; }
+  .hero-plaque h1 { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+  .hero-greeting { margin-top: 12px; }
+  .hero-motto { max-width: 300px; margin-inline: auto; }
+  .hero-shortcuts { gap: 10px; }
+  .hero-shortcut { min-height: 183px; padding: 11px 8px; }
+  .shortcut-art { width: 55px; height: 52px; font-size: 2.1rem; }
+  .hero-shortcut strong { font-size: .85rem; }
+  .hero-shortcut small { font-size: .67rem; }
+  .shortcut-cta { min-width: 95px; font-size: .7rem; }
+  .hero-bottom-row { grid-template-columns: 1fr; gap: 10px; }
+  .hero-countdown { padding: 10px 8px 8px; }
+  .mini-panel-heading strong { font-size: .98rem; }
+  .hero-countdown .time-card strong { font-size: 1.7rem; }
+  .hero-countdown .time-card span { font-size: .65rem; }
+  .hero-lunar-card { padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-shortcut, .hero-lunar-card { transition: none; } }
