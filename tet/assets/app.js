@@ -290,27 +290,6 @@
   $("resetEnvelopes").addEventListener("click",()=>{envelopeOpened=false;const buttons=Array.from($("envelopePickGrid").querySelectorAll(".pick-envelope"));const prizes=buttons.map(b=>Number(b.dataset.prize));shuffle(prizes);buttons.forEach((b,i)=>{b.dataset.prize=String(prizes[i]);b.disabled=false;b.classList.remove("opened");b.querySelector("small").textContent=i===7?"Phong bao bí ẩn":`Phong bao ${i+1}`;});$("jackpotResult").innerHTML='<div class="jackpot-result-icon">✨</div><p>Chọn một phong bao bất kỳ</p><strong>Biết đâu là 1.000.000.000 ₫!</strong><span>Chúc bạn năm mới nhiều niềm vui và may mắn.</span>';});
 
 
-  // Decorative snow/blossom particles fall only along the two page edges.
-  const particleSets = [
-    { id: "fallingLeft", chars: ["❄", "✿", "✧", "❅"] },
-    { id: "fallingRight", chars: ["❄", "✿", "❀", "✧"] }
-  ];
-  particleSets.forEach(set => {
-    const host = $(set.id);
-    if (!host) return;
-    for (let i = 0; i < 14; i++) {
-      const particle = document.createElement("span");
-      particle.className = "fall-particle";
-      particle.textContent = set.chars[Math.floor(Math.random() * set.chars.length)];
-      particle.style.left = `${8 + Math.random() * 80}%`;
-      particle.style.animationDuration = `${8 + Math.random() * 12}s`;
-      particle.style.animationDelay = `${-Math.random() * 18}s`;
-      particle.style.fontSize = `${10 + Math.random() * 13}px`;
-      particle.style.setProperty("--drift", `${Math.round(Math.random() * 55 - 27)}px`);
-      host.appendChild(particle);
-    }
-  });
-
   // Random lucky numbers for entertainment only; no prediction or betting advice.
   const drawLuckyNumber = $("drawLuckyNumber");
   const drawVietlottNumbers = $("drawVietlottNumbers");
@@ -383,6 +362,77 @@
 
     drawLuckyNumber.addEventListener("click", () => runLuckyReveal("lucky"));
     drawVietlottNumbers.addEventListener("click", () => runLuckyReveal("vietlott"));
+  }
+
+  // Lucky name wheel: choose one participant uniformly at random.
+  const wheelNamesInput = $("wheelNames");
+  const wheelCanvas = $("nameWheelCanvas");
+  const spinWheelButton = $("spinNameWheel");
+  if (wheelNamesInput && wheelCanvas && spinWheelButton) {
+    const wheelCtx = wheelCanvas.getContext("2d");
+    const wheelStage = $("wheelStage");
+    const wheelCount = $("wheelNameCount");
+    const wheelWinner = $("wheelWinner");
+    let wheelRotation = 0;
+    let wheelBusy = false;
+    const wheelColors = ["#b51f28", "#f4ca72", "#7e1018", "#ffe6a1", "#d98b22", "#fff4d2", "#9c1822", "#edc15d", "#6e1018", "#ffdfa0", "#c43a2d", "#f8d98d", "#8c4b19", "#fff0c4", "#a71925"];
+    const getWheelNames = () => wheelNamesInput.value.split(/\r?\n/).map(name => name.trim()).filter(Boolean);
+    function drawNameWheel() {
+      const names = getWheelNames();
+      const ctx = wheelCtx;
+      const size = wheelCanvas.width;
+      const center = size / 2;
+      const radius = center - 12;
+      ctx.clearRect(0, 0, size, size);
+      if (!names.length) {
+        ctx.beginPath(); ctx.arc(center, center, radius, 0, Math.PI * 2); ctx.fillStyle = "#fff2cf"; ctx.fill();
+        ctx.fillStyle = "#8f1018"; ctx.font = "bold 26px sans-serif"; ctx.textAlign = "center"; ctx.fillText("Nhập tên để bắt đầu", center, center);
+      } else {
+        const arc = Math.PI * 2 / names.length;
+        names.forEach((name, index) => {
+          const start = -Math.PI / 2 + index * arc;
+          ctx.beginPath(); ctx.moveTo(center, center); ctx.arc(center, center, radius, start, start + arc); ctx.closePath();
+          ctx.fillStyle = wheelColors[index % wheelColors.length]; ctx.fill(); ctx.strokeStyle = "#fff1c9"; ctx.lineWidth = 4; ctx.stroke();
+          ctx.save(); ctx.translate(center, center); ctx.rotate(start + arc / 2);
+          ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillStyle = ["#fdf4d9", "#6f1712", "#fff8e5"].includes(wheelColors[index % wheelColors.length]) ? "#6f1712" : "#fff8e5";
+          const maxLen = names.length > 10 ? 13 : 18;
+          const label = name.length > maxLen ? name.slice(0, maxLen - 1) + "…" : name;
+          ctx.font = `bold ${names.length > 10 ? 17 : names.length > 7 ? 19 : 23}px sans-serif`;
+          ctx.fillText(label, radius - 24, 0, radius * .62); ctx.restore();
+        });
+      }
+      wheelCount.textContent = `${names.length} người tham gia`;
+    }
+    wheelNamesInput.addEventListener("input", () => { drawNameWheel(); wheelWinner.textContent = "✨ Danh sách đã thay đổi — hãy quay để chọn người may mắn!"; });
+    spinWheelButton.addEventListener("click", () => {
+      if (wheelBusy) return;
+      const names = getWheelNames();
+      if (names.length < 1) {
+        wheelWinner.textContent = "⚠️ Vui lòng nhập ít nhất một tên, mỗi tên trên một dòng.";
+        wheelNamesInput.focus(); return;
+      }
+      const normalized = names.map(name => name.toLocaleLowerCase("vi-VN"));
+      if (new Set(normalized).size !== names.length) {
+        wheelWinner.textContent = "⚠️ Có tên bị trùng. Hãy kiểm tra danh sách trước khi quay.";
+        wheelNamesInput.focus(); return;
+      }
+      wheelBusy = true; spinWheelButton.disabled = true; wheelWinner.textContent = "✨ Vòng quay lộc xuân đang quay...";
+      const winnerIndex = Math.floor(Math.random() * names.length);
+      const segment = 360 / names.length;
+      const target = ((360 - (winnerIndex + 0.5) * segment) % 360 + 360) % 360;
+      const current = ((wheelRotation % 360) + 360) % 360;
+      const extra = 360 * (6 + Math.floor(Math.random() * 3));
+      const delta = extra + ((target - current + 360) % 360);
+      wheelRotation += delta;
+      wheelStage.style.setProperty("--wheel-rotation", `${wheelRotation}deg`);
+      wheelCanvas.style.transition = "transform 5.2s cubic-bezier(.12,.72,.08,1)";
+      wheelCanvas.style.transform = `rotate(${wheelRotation}deg)`;
+      window.setTimeout(() => {
+        wheelWinner.textContent = `🎉 Chúc mừng ${names[winnerIndex]} — người may mắn nhất năm! 🎁`;
+        wheelBusy = false; spinWheelButton.disabled = false;
+      }, 5350);
+    });
+    drawNameWheel();
   }
 
   // Mobile navigation
