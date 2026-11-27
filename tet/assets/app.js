@@ -301,9 +301,44 @@
     const message = $("luckyNumberMessage");
     const label = $("luckyNumberLabel");
     const deities = $("fortuneDeity");
+    const soundToggle = $("toggleLuckySound");
     const buttons = [drawLuckyNumber, drawVietlottNumbers];
+    let soundEnabled = true;
+    let audioContext = null;
+    if (soundToggle) soundToggle.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+      soundToggle.textContent = soundEnabled ? "🔊 Âm thanh: bật" : "🔇 Âm thanh: tắt";
+    });
+    function playLuckyChime() {
+      if (!soundEnabled) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        audioContext = audioContext || new AudioCtx();
+        if (audioContext.state === "suspended") audioContext.resume();
+        const now = audioContext.currentTime;
+        [523.25, 659.25, 783.99, 1046.5].forEach((frequency, i) => {
+          const oscillator = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency, now + i * 0.12);
+          gain.gain.setValueAtTime(0.0001, now + i * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.11, now + i * 0.12 + 0.025);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.12 + 0.42);
+          oscillator.connect(gain); gain.connect(audioContext.destination);
+          oscillator.start(now + i * 0.12); oscillator.stop(now + i * 0.12 + 0.44);
+        });
+      } catch (_) { /* Sound is optional; the visual reveal still works. */ }
+    }
 
     function runLuckyReveal(mode) {
+      if (soundEnabled) {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) { audioContext = audioContext || new AudioCtx(); if (audioContext.state === "suspended") audioContext.resume(); }
+        } catch (_) { /* Continue with visual effects if audio is unavailable. */ }
+      }
       let numbers;
       if (mode === "vietlott") {
         const pool = Array.from({ length: 55 }, (_, i) => i + 1);
@@ -343,6 +378,7 @@
         ];
         card.classList.remove("charging");
         card.classList.add("reveal");
+        playLuckyChime();
         deities.setAttribute("aria-hidden", "false");
         message.textContent = blessings[Math.floor(Math.random() * blessings.length)];
         if (mode === "vietlott") {

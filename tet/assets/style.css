@@ -349,3 +349,73 @@ body { background: #fff8e9; }
   .hero-lunar-card { padding: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-shortcut, .hero-lunar-card { transition: none; } }
+
+/* Warm handmade-paper spring theme for every section below the hero. */
+.calendar-section,
+.wishes-section,
+.lixi-section,
+.game-section,
+.lucky-number-section,
+.lucky-envelope-section {
+  max-width: none;
+  position: relative;
+  background-color: #f7eedc;
+  background-image:
+    radial-gradient(ellipse at 4% 8%, rgba(226, 178, 82, .16), transparent 28%),
+    radial-gradient(ellipse at 96% 92%, rgba(192, 66, 49, .09), transparent 30%),
+    radial-gradient(circle at 1px 1px, rgba(156, 113, 54, .075) .7px, transparent .9px),
+    linear-gradient(135deg, #fbf4e6, #f3e4c8 52%, #fff8eb);
+  background-size: auto, auto, 14px 14px, auto;
+  border-top: 1px solid rgba(183, 133, 48, .15);
+}
+.calendar-section > *, .wishes-section > *, .lixi-section > *,
+.game-section > *, .lucky-number-section > *, .lucky-envelope-section > * {
+  position: relative;
+  z-index: 1;
+}
+.wishes-section > *, .game-section > * { max-width: 900px; margin-left: auto; margin-right: auto; }
+.game-section > .folk-games-grid { max-width: 1120px; }
+.calendar-card, .wish-card, .lixi-card, .game-panel, .folk-game-card,
+.lucky-number-card, .name-wheel-panel, .lucky-envelope-panel {
+  box-shadow: 0 18px 44px rgba(105, 54, 22, .10), 0 2px 0 rgba(255,255,255,.72) inset;
+}
+.calendar-card, .game-panel { background: rgba(255, 253, 247, .94); }
+.wish-card { background: radial-gradient(circle at 100% 0, #fff0cb, transparent 38%), rgba(255,250,240,.96); }
+.lixi-card { background: rgba(255, 251, 241, .95); }
+.folk-game-card { background: linear-gradient(145deg, rgba(255,253,247,.98), rgba(255,245,224,.96)); }
+.lucky-number-section { background-image: radial-gradient(ellipse at 8% 0%, rgba(235, 192, 97, .24), transparent 32%), radial-gradient(ellipse at 100% 100%, rgba(180, 39, 43, .10), transparent 35%), radial-gradient(circle at 1px 1px, rgba(156, 113, 54, .075) .7px, transparent .9px), linear-gradient(145deg, #fbf0d9, #f2dfbd 55%, #fff6e6); }
+.lucky-number-card { background: radial-gradient(ellipse at 50% 25%, rgba(255,249,224,.98), rgba(255,246,221,.96) 48%, rgba(244,220,177,.98)); }
+.closing-banner { background-image: radial-gradient(ellipse at 50% 0%, rgba(244,202,114,.2), transparent 42%), linear-gradient(125deg, #6e0911, #a61c25 55%, #7a0c14); }
+.site-footer { background: linear-gradient(135deg, #f8eed9, #fff9ed 55%, #efe0c2); border-top: 1px solid rgba(183,133,48,.24); }
+
+/* Realistic 3D God-of-Wealth cutout with independent, playful movement. */
+.fortune-figure { width: clamp(135px, 22vw, 205px); min-height: 220px; }
+.fortune-god-image { position: relative; z-index: 2; display: block; width: 100%; height: auto; max-height: 225px; object-fit: contain; filter: drop-shadow(0 12px 10px rgba(110, 43, 11, .22)); transform-origin: 50% 90%; }
+.fortune-figure small { margin-top: -7px; padding: 5px 10px; border: 1px solid #e8bf57; border-radius: 999px; background: linear-gradient(135deg, #fff2c5, #f4d27c); box-shadow: 0 3px 8px rgba(119, 65, 11, .12); }
+.lucky-number-card.reveal .fortune-left .fortune-god-image { animation: godDanceLeft 1.65s ease-in-out 1s infinite; }
+.lucky-number-card.reveal .fortune-right .fortune-god-image { animation: godDanceRight 1.8s ease-in-out 1.08s infinite; }
+@keyframes godDanceLeft { 0%,100% { transform: translateY(0) rotate(-2deg); } 25% { transform: translateY(-9px) rotate(3deg); } 50% { transform: translateY(0) rotate(1deg); } 75% { transform: translateY(-5px) rotate(-4deg); } }
+@keyframes godDanceRight { 0%,100% { transform: translateY(-1px) scaleX(-1) rotate(2deg); } 25% { transform: translateY(-5px) scaleX(-1) rotate(-4deg); } 50% { transform: translateY(-10px) scaleX(-1) rotate(-1deg); } 75% { transform: translateY(0) scaleX(-1) rotate(4deg); } }
+.fortune-right .fortune-god-image { transform: scaleX(-1); }
+.flying-ingots { position: absolute; z-index: 3; inset: 55px 8% auto; height: 205px; display: flex; justify-content: space-around; pointer-events: none; opacity: 0; }
+.flying-ingots span { display: grid; place-items: center; align-self: flex-end; width: 32px; height: 24px; border: 1px solid #fff0a2; border-radius: 50%; color: #9b5900; background: linear-gradient(145deg, #fff5a8, #e9a51b 65%, #a65b05); box-shadow: 0 3px 12px rgba(232,167,25,.45); font-size: .65rem; font-weight: 900; opacity: 0; }
+.lucky-number-card.reveal .flying-ingots { opacity: 1; }
+.lucky-number-card.reveal .flying-ingots span { animation: ingotFloat 2.4s ease-in-out infinite; }
+.lucky-number-card.reveal .flying-ingots span:nth-child(2) { animation-delay: .35s; }
+.lucky-number-card.reveal .flying-ingots span:nth-child(3) { animation-delay: .7s; }
+.lucky-number-card.reveal .flying-ingots span:nth-child(4) { animation-delay: 1.05s; }
+@keyframes ingotFloat { 0% { opacity: 0; transform: translateY(12px) rotate(-20deg) scale(.6); } 20% { opacity: .95; } 70% { opacity: .9; } 100% { opacity: 0; transform: translateY(-95px) rotate(28deg) scale(1.15); } }
+.button-sound { color: #7a5016; background: linear-gradient(145deg, #fff4d7, #f4dfad); border-color: #dfbd70; }
+.button-sound[aria-pressed="false"] { color: #805f56; background: #f5eee4; border-color: #d8c9b7; }
+@media (max-width: 600px) {
+  .fortune-figure { width: 112px; min-height: 150px; }
+  .fortune-god-image { max-height: 158px; }
+  .fortune-figure small { font-size: .52rem; padding: 4px 7px; letter-spacing: .07em; }
+  .flying-ingots { top: 40px; height: 160px; }
+  .flying-ingots span { width: 24px; height: 18px; }
+  .wishes-section > *, .game-section > * { max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lucky-number-card.reveal .fortune-god-image,
+  .lucky-number-card.reveal .flying-ingots span { animation: none !important; }
+}
