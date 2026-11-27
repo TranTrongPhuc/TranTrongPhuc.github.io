@@ -12,49 +12,51 @@
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-  <div class="falling-side falling-left" id="fallingLeft" aria-hidden="true"></div>
-  <div class="falling-side falling-right" id="fallingRight" aria-hidden="true"></div>
-  <div class="top-ribbon"><span>✦</span> XUÂN ĐINH MÙI 2027 <span>✦</span></div>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Sắp Tết - về đầu trang">
-      <span class="brand-mark">春</span>
-      <span><strong>Sắp Tết</strong><small>Một chút xuân, một chút thương</small></span>
-    </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">☰</button>
-    <nav id="mainNav" aria-label="Điều hướng chính">
-      <a href="#countdown">Đếm ngược</a><a href="#calendar">Lịch âm</a><a href="#wishes">Lời chúc</a><a href="#li-xi">Lì xì</a><a href="#game">Trò chơi</a><a href="#lucky-envelope">Bóc lì xì</a><a href="#lucky-number">Số may mắn</a>
-    </nav>
-  </header>
-
   <main id="home">
-    <section class="hero">
-      <div class="hero-decoration deco-left" aria-hidden="true">✿</div>
-      <div class="hero-decoration deco-right" aria-hidden="true">✿</div>
-      <div class="hero-content">
-        <p class="eyebrow">TẾT NGUYÊN ĐÁN · ĐINH MÙI</p>
-        <h1>Tết là để <em>trở về</em></h1>
-        <p class="hero-subtitle">Gói chút bình yên, trao nhau lời chúc, đón một năm mới thật nhiều điều lành.</p>
-        <a class="button button-gold" href="#countdown">Đếm ngược đến Tết <span>↓</span></a>
+    <header class="site-header scenic-header">
+      <a class="brand" href="#home" aria-label="Sắp Tết 2027 - Trang chủ">
+        <span class="brand-mark">春</span><span><strong>Sắp Tết 2027</strong><small>Tết về nhà thôi!</small></span>
+      </a>
+      <nav id="mainNav" aria-label="Điều hướng chính">
+        <a href="#home">⌂ Trang chủ</a>
+        <a href="#countdown">⏳ Đếm ngược</a>
+        <a href="#calendar">▦ Lịch âm</a>
+        <a href="#wishes">✉ Lời chúc</a>
+        <a href="#game">✿ Trò chơi</a>
+      </nav>
+      <button id="menuToggle" class="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false">☰</button>
+    </header>
+
+    <section class="hero scenic-hero">
+      <div class="scenic-shade" aria-hidden="true"></div>
+      <div class="hero-content scenic-content">
+        <p class="eyebrow">✦ XUÂN ĐINH MÙI · 2027 ✦</p>
+        <div class="hero-plaque"><span class="plaque-cloud">❧</span><h1>Tết 2027</h1><span class="plaque-cloud">❧</span></div>
+        <h2 class="hero-greeting">Chúc Mừng Năm Mới!</h2>
+        <p class="hero-motto">An Khang · Thịnh Vượng · Vạn Sự Như Ý</p>
         <div class="hero-date"><span>🧧</span> Mùng 1 Tết · Thứ Bảy, 06.02.2027</div>
       </div>
-      <div class="lantern lantern-one" aria-hidden="true">🏮</div>
-      <div class="lantern lantern-two" aria-hidden="true">🏮</div>
-      <div class="flower-sprig" aria-hidden="true">✿　✽　✿</div>
-    </section>
 
-    <section class="countdown-section section-wrap" id="countdown">
-      <div class="section-heading">
-        <span class="section-kicker">CHỜ XUÂN GÕ CỬA</span>
-        <h2>Còn bao lâu nữa đến Tết?</h2>
-        <p>Mỗi ngày trôi qua, mùa đoàn viên lại gần thêm một chút.</p>
+      <div class="hero-shortcuts" aria-label="Tiện ích ngày Tết">
+        <a class="hero-shortcut" href="#game"><span class="shortcut-art">🎴</span><strong>Ghép Thẻ May Mắn</strong><small>Tìm cặp hình giống nhau để nhận niềm vui</small><span class="shortcut-cta">▶ Chơi ngay</span></a>
+        <a class="hero-shortcut" href="#lucky-number"><span class="shortcut-art deity-art">🧧</span><strong>Xin Số May Mắn</strong><small>Nhận một con số ngẫu nhiên đầu năm</small><span class="shortcut-cta">✦ Xin ngay</span></a>
+        <a class="hero-shortcut" href="#lucky-number"><span class="shortcut-art vietlott-art">🎟️</span><strong>Tạo Bộ Số 6/55</strong><small>Tạo ngẫu nhiên 6 số để giải trí</small><span class="shortcut-cta">❖ Tạo số</span></a>
+        <a class="hero-shortcut" href="#name-wheel"><span class="shortcut-art wheel-art">🎡</span><strong>Vòng Quay May Mắn</strong><small>Quay chọn ngẫu nhiên một người</small><span class="shortcut-cta">🎁 Quay ngay</span></a>
       </div>
-      <div class="countdown-grid" role="timer" aria-label="Thời gian còn lại đến Tết">
-        <div class="time-card"><strong id="days">--</strong><span>Ngày</span></div>
-        <div class="time-card"><strong id="hours">--</strong><span>Giờ</span></div>
-        <div class="time-card"><strong id="minutes">--</strong><span>Phút</span></div>
-        <div class="time-card"><strong id="seconds">--</strong><span>Giây</span></div>
+
+      <div class="hero-bottom-row">
+        <div class="hero-countdown" id="countdown">
+          <div class="mini-panel-heading"><span>✿</span><div><strong>Đếm Ngược Tết 2027</strong><small>Chờ khoảnh khắc giao mùa</small></div><span>✿</span></div>
+          <div class="countdown-grid" role="timer" aria-label="Thời gian còn lại đến Tết">
+            <div class="time-card"><strong id="days">--</strong><span>Ngày</span></div><i></i>
+            <div class="time-card"><strong id="hours">--</strong><span>Giờ</span></div><i></i>
+            <div class="time-card"><strong id="minutes">--</strong><span>Phút</span></div><i></i>
+            <div class="time-card"><strong id="seconds">--</strong><span>Giây</span></div>
+          </div>
+          <p class="countdown-note" id="countdownNote">Đang đếm từng khoảnh khắc chờ xuân...</p>
+        </div>
+        <a class="hero-lunar-card" href="#calendar"><span class="lunar-icon">▦</span><div><strong>Lịch Âm Việt Nam</strong><b>🧧 Mùng 1 Tết</b><small>06 tháng 02 · 2027</small><span class="lunar-link">Tra cứu lịch âm →</span></div></a>
       </div>
-      <p class="countdown-note" id="countdownNote">Đang đếm từng khoảnh khắc chờ xuân...</p>
     </section>
 
     <section class="calendar-section section-wrap" id="calendar">
@@ -159,6 +161,19 @@
           <button class="button button-outline" id="drawVietlottNumbers" type="button">🎟️ Tạo bộ số ngẫu nhiên 6/55</button>
         </div>
         <p class="lucky-number-disclaimer">Các số được tạo hoàn toàn ngẫu nhiên chỉ để giải trí, không dự đoán kết quả Vietlott, không làm tăng xác suất trúng và không phải lời khuyên mua vé/cá cược.</p>
+        </div>
+      <div class="name-wheel-panel" id="name-wheel">
+          <div class="name-wheel-heading"><span class="section-kicker">VÒNG QUAY LỘC XUÂN</span><h3>🎡 Ai may mắn nhất năm?</h3><p>Nhập bao nhiêu người cũng được, mỗi dòng một tên. Vòng quay sẽ chọn ngẫu nhiên một người nhận thưởng.</p></div>
+          <label class="wheel-label" for="wheelNames">Danh sách người tham gia</label>
+          <textarea id="wheelNames" rows="7" placeholder="Nguyễn An&#10;Trần Bình&#10;Lê Chi&#10;...">Nguyễn An
+Trần Bình
+Lê Chi
+Phạm Dũng
+Hoàng Giang</textarea>
+          <div class="wheel-controls"><span id="wheelNameCount">5 người tham gia</span><button class="button button-red" id="spinNameWheel" type="button">🎡 Quay tìm người may mắn</button></div>
+          <div class="wheel-stage" id="wheelStage"><div class="wheel-pointer" aria-hidden="true">▼</div><canvas id="nameWheelCanvas" width="600" height="600" aria-label="Vòng quay chọn người may mắn"></canvas><div class="wheel-center" aria-hidden="true">🧧<small>LỘC XUÂN</small></div></div>
+          <div class="wheel-winner" id="wheelWinner" aria-live="polite">✨ Người may mắn sẽ xuất hiện tại đây!</div>
+          <p class="lucky-number-disclaimer">Kết quả được chọn ngẫu nhiên để vui chơi. Hãy công bố trước thể lệ và phần thưởng; không dùng vòng quay để thu tiền tham gia hoặc làm căn cứ cho trò cá cược.</p>
       </div>
     </section>
 
